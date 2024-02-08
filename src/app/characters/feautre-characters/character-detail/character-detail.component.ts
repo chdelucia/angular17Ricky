@@ -30,4 +30,10 @@ export class CharacterDetailComponent {
   onGoBack():void{
     this.location.back();
   }
+
+  isOpen = true;
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+  }
 }
