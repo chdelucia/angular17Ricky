@@ -1,30 +1,39 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   OnInit,
-  Output
 } from '@angular/core';
-import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { addTextSearch, selectTextSearch } from '@characters-data/state';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-filter-name',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './filter-name.component.html',
   styleUrl: './filter-name.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FilterNameComponent implements OnInit {
-  @Output() valueChange = new EventEmitter<string>();
-
+export class FilterNameComponent {
   private searchText$ = new Subject<string>();
 
-  ngOnInit(): void {
+  currentText$!: Observable<string | null>;
+
+  constructor(private store: Store) {
+    this.currentText$ = this.store.select(selectTextSearch);
+
     this.searchText$.pipe(
-      debounceTime(500),
-      distinctUntilChanged()
-    ).subscribe(value => this.valueChange.emit(value));
+      debounceTime(700),
+      distinctUntilChanged(),
+      takeUntilDestroyed()
+    ).subscribe(value => this.updateStore(value));
+  }
+
+  updateStore(value: string): void {
+    this.store.dispatch(addTextSearch({ textSearch: value}))
   }
 
   getValue(event: Event): string {

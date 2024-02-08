@@ -14,10 +14,8 @@ export class CharacterService {
 
   prevInfo!: CharactersDto;
 
-  searchCharacters(query: string, page?: number): Observable<CharactersDto> {
-    const filter = page ?
-      `${environment.baseUrlAPI}/?name=${query}&page=${page}`
-      : query;
+  searchCharacters(query: string, page: number): Observable<CharactersDto> {
+    const filter = `${environment.baseUrlAPI}/?name=${query}&page=${page}`
 
     return this.http.get<CharactersDto>(filter)
     .pipe(

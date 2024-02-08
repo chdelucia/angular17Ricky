@@ -3,14 +3,14 @@ import { provideRouter, withComponentInputBinding, withViewTransitions } from '@
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideStore } from '@ngrx/store';
+import { characterReducer } from '@characters-data/state/character.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(
-      routes,
-      withComponentInputBinding(),
-      withViewTransitions()
-    ),
+    provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideHttpClient(),
-  ]
+    //provideStore(reducers, { metaReducers })
+    provideStore({ chars: characterReducer})
+]
 };

@@ -1,12 +1,9 @@
 
 @defer(when charactersResponse) {
   <section class="filters">
-    <app-filter-name
-      (valueChange)="filterByName($event)"
-    ></app-filter-name>
+    <app-filter-name></app-filter-name>
     <app-pagination
       [info]="charactersResponse.info"
-      (pagination)="onPagination($event)"
     ></app-pagination>
   </section>
 
