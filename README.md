@@ -1,6 +1,7 @@
 
-# Deployed
+# Deploy 🚀
   https://rickchdelucia.netlify.app/home
+  
 # Info
 
 -Just used ngrx v17.1 cause state was mandatory. 
@@ -8,6 +9,8 @@
 -Some unit test are provided (service, pagination and filter component)
 
 -Some e2e test are provided
+
+-I don't like beer and you didnt give me the chance to drink wine 😭😭😭
 
 # future work
 
