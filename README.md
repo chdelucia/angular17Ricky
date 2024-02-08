@@ -12,6 +12,8 @@
 
 -Add more select filters like gender and status
 
+-Add skeletons solving repainting problems
+
 # Angular17Ricky
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
