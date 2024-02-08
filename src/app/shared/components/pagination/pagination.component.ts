@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '../../../characters/data-access/models/pagination.model';
 
@@ -10,56 +18,35 @@ import { Pagination } from '../../../characters/data-access/models/pagination.mo
   styleUrl: './pagination.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PaginationComponent {
-  @Input({required: true}) info!: Pagination
-  @Output() panelClosed = new EventEmitter<string>();
+export class PaginationComponent implements OnChanges {
+  @Input({required: true}) info!: Pagination;
 
+  @Output() pagination = new EventEmitter<string>();
 
-  onClick(value: string): void {
-    this.panelClosed.emit(value)
+  currentIndex = 1;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { previousValue, currentValue } = changes['info']
+    if(previousValue && previousValue.count !== currentValue.count) {
+      this.currentIndex = 1;
+    }
   }
 
-  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 12) {
-    // calculate total pages
-    let totalPages = Math.ceil(totalItems / pageSize);
+  emitPage(page: number): void {
+    this.updatePageIndex(page)
+    const url= this.getUrl(page);
+    this.pagination.emit(url);
+  }
 
-    let startPage: number, endPage: number;
-    if (totalPages <= 10) {
-        // less than 10 total pages so show all
-        startPage = 1;
-        endPage = totalPages;
-    } else {
-        // more than 10 total pages so calculate start and end pages
-        if (currentPage <= 6) {
-            startPage = 1;
-            endPage = 10;
-        } else if (currentPage + 4 >= totalPages) {
-            startPage = totalPages - 9;
-            endPage = totalPages;
-        } else {
-            startPage = currentPage - 5;
-            endPage = currentPage + 4;
-        }
-    }
+  private updatePageIndex(value: number): void {
+    this.currentIndex = value;
+  }
 
-    // calculate start and end item indexes
-    let startIndex = (currentPage - 1) * pageSize;
-    let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+  private getUrl(pageIndex: number) :string {
+    let url = this.info.next ?? this.info.prev
+    const regex = /page=\d+\b/;
+    url = url!.replace(regex, `page=${pageIndex}`);
+    return url!;
+  }
 
-    // create an array of pages to ng-repeat in the pager control
-    let pages = _.range(startPage, endPage + 1);
-
-    // return object with all pager properties required by the view
-    return {
-        totalItems: totalItems,
-        currentPage: currentPage,
-        pageSize: pageSize,
-        totalPages: totalPages,
-        startPage: startPage,
-        endPage: endPage,
-        startIndex: startIndex,
-        endIndex: endIndex,
-        pages: pages
-    };
-}
 }

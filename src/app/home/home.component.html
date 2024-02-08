@@ -1,6 +1,26 @@
-<main class="main">
 
-  <app-character-list></app-character-list>
+@defer(when charactersResponse) {
+  <section class="filters">
+    <app-filter-name
+      (valueChange)="filterByName($event)"
+    ></app-filter-name>
+    <app-pagination
+      [info]="charactersResponse.info"
+      (pagination)="onPagination($event)"
+    ></app-pagination>
+  </section>
 
-</main>
+  @if (!noResult) {
+    <app-character-list [chars]="charactersResponse.results"></app-character-list>
+  }@else {
+    <section class="no-results">
+      No results, try other names!
+    </section>
+  }
+
+} @placeholder(minimum 200ms) {
+  <img alt="loading..." src="loading.gif" />
+}
+
+
 

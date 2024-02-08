@@ -1,6 +1,35 @@
-.chars-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  border: 1px solid #ccc;
-}
+.chars-container
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  gap: 0.88rem
+
+  .char-card
+    flex: 1 0 300px
+    border: 1px solid #000
+    transition: .4s
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+    border-radius:10px
+    overflow: hidden
+    background: #fff
+
+    &__img
+      &.dead
+        filter: invert(1)
+      img
+        width: 100%
+
+    &__info
+      padding: 0 1rem
+      font-size: 2rem
+      text-align: center
+      white-space: nowrap
+      &__name
+        text-overflow: ellipsis
+        overflow: hidden
+
+    &:hover
+      transform: scale(1.07)
+      box-shadow: 0 0 40px -10px rgba(0, 228, 0, 0.7)
+      cursor: pointer
+

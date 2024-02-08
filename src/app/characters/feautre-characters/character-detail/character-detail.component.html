@@ -1,1 +1,31 @@
-<p>character-detail works!</p>
+
+  <section  class="character-container">
+    <div class="character-card" *ngIf="character$ | async as char; else cheating">
+      <img [src]="char.image" alt="Character Image" class="character-image">
+      <div class="character-details">
+        <div><strong>Name:</strong> {{ char.name }}</div>
+        <div><strong>Species:</strong> {{ char.species }}</div>
+        <div><strong>Gender:</strong> {{ char.gender }}</div>
+        <div><strong>Status:</strong> {{ char.status }}</div>
+        <div *ngIf="char.type"><strong>Type:</strong> {{ char.type }}</div>
+        <div><strong>ID:</strong> {{ char.id }}</div>
+        <div><strong>Location:</strong> {{ char.location.name }}</div>
+        <div><strong>Origin:</strong> {{ char.origin.name }}</div>
+      </div>
+    </div>
+
+    <a
+      class="button"
+      [routerLink]="listRoute"
+      role="button"
+      aria-label="go back"
+    >
+      Go back
+    </a>
+  </section>
+
+  <ng-template #cheating>
+    <section class="not-found">Are you cheating?</section>
+  </ng-template>
+
+

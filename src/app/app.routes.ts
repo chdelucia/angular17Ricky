@@ -1,18 +1,15 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '@home/home.component';
+import { globalRoutes } from '@shared/routes.enum';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent, title: 'Home' },
   {
-    path: 'character',
-    loadComponent: () =>
-    import('@characters/character-list/character-list.component').then(
-      (mod) => mod.CharacterListComponent,
-    ),
-    title: 'List'
+    path: globalRoutes.HOME,
+    component: HomeComponent,
+    title: 'Home'
   },
   {
-    path: ':id',
+    path: globalRoutes.CHAR_DETAIL,
     loadComponent: () =>
     import('@characters/character-detail/character-detail.component').then(
       (mod) => mod.CharacterDetailComponent,
@@ -21,7 +18,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: globalRoutes.HOME,
     pathMatch: 'full'
   },
   {

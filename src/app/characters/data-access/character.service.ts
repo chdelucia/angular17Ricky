@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { throwError, Observable, catchError } from 'rxjs';
-import { Character } from './models';
-import { CharactersDto } from './models/characters-dto';
+import { throwError, Observable, catchError, of } from 'rxjs';
+import { Character, CharactersDto } from './models';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +12,16 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  searchCharacters(query = '', page = 1): Observable<CharactersDto> {
-    const filter = `${environment.baseUrlAPI}/?name=${query}&page=${page}`;
+
+  searchCharacters(query: string, page?: number): Observable<CharactersDto> {
+    const filter = page ?
+      `${environment.baseUrlAPI}/?name=${query}&page=${page}`
+      : query;
     return this.http.get<CharactersDto>(filter)
     .pipe(catchError((err) => this.handleError(err)));
   }
 
-  getDetails(id: number) {
+  getDetails(id: number): Observable<Character> {
     return this.http.get<Character>(`${environment.baseUrlAPI}/${id}`)
     .pipe(catchError((err) => this.handleError(err)));
   }
@@ -26,7 +29,8 @@ export class CharacterService {
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('An error occurred:', error.error);
-    } else {
+    }
+    else {
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }

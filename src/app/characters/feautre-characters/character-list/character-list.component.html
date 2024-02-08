@@ -1,15 +1,13 @@
 
-<section *ngIf="characters$ | async as response" class="chars-container">
-  {{ response.results.length}}
-  @for (character of response.results; track character.id) {
-    <div class="char-card">
-      <div class="char-card__img">
+<section *ngIf="characters" class="chars-container">
+  @for (character of characters; track character.id) {
+
+    <div class="char-card" [routerLink]="[detailRoute, character.id]">
+      <div class="char-card__img" [class.dead]="character.status === 'Dead'">
         <img [src]="character.image" alt="Avatar">
       </div>
       <div class="char-card__info">
-        <p>{{ character.url}}</p>
-        <p>Name: {{ character.name }}</p>
-        <p>Biography: {{ character.species }}</p>
+        <p class="char-card__info__name"> {{ character.name }}</p>
       </div>
     </div>
 

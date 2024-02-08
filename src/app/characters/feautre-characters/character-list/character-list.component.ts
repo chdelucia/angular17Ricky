@@ -1,24 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CharacterService } from '../../data-access/character.service';
-import { Observable } from 'rxjs';
-import { CharactersDto } from '../../data-access/models/characters-dto';
+import { Character } from '../../data-access/models';
+import { globalRoutes } from '@shared/routes.enum';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-character-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterListComponent {
-  characters$!: Observable<CharactersDto>
+  @Input({required: true, alias: 'chars'}) characters!: Character[]
 
-  constructor(private characterService: CharacterService) {}
-
-  ngOnInit(): void {
-    this.characters$ = this.characterService.searchCharacters();
-  }
+  detailRoute = `/${globalRoutes.CHAR_LIST}`
 
 }
