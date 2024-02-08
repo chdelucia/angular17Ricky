@@ -1,3 +1,6 @@
+
+# Deployed
+  https://rickchdelucia.netlify.app/home
 # Info
 
 -Just used ngrx v17.1 cause state was mandatory. 
