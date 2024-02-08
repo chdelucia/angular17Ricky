@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, numberAttribute } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
@@ -14,7 +14,7 @@ import { Character } from '@characters-data/models';
   styleUrl: './character-detail.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharacterDetailComponent {
+export class CharacterDetailComponent implements OnInit {
   @Input({ transform: numberAttribute }) id = 0;
 
   character$!: Observable<Character>;

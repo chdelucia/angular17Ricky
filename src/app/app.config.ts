@@ -10,7 +10,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideHttpClient(),
-    //provideStore(reducers, { metaReducers })
     provideStore({ chars: characterReducer})
 ]
 };

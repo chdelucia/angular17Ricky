@@ -8,14 +8,14 @@
   </section>
 
   @if (noResult) {
-    <section class="no-results">
+    <section class="no-results" data-cy="no-results">
       No results, try other names!
     </section>
   } @else {
     <app-character-list [chars]="charactersResponse.results"></app-character-list>
   }
 
-} @placeholder(minimum 1500ms) {
+} @placeholder(minimum 400ms) {
   <app-loader></app-loader>
 }
 

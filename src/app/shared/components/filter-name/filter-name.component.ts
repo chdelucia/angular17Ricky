@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  Component,
-  OnInit,
+  Component
 } from '@angular/core';
 import { addTextSearch, selectTextSearch } from '@characters-data/state';
 import { Store } from '@ngrx/store';

@@ -1,14 +1,16 @@
 # Info
 
-I did not add any extra lib not even state management, it is a small app does not need overegineering. 
+-Just used ngrx v17.1 cause state was mandatory. 
+-Some unit test are provided (service, pagination and filter component)
+-Some e2e test are provided
 
 # future work
 
-Since the api does not change on realtime we could save call to the api at least when the name is not given and it is the first page.
+-Since the api does not change on realtime we could save call to the api at least when the name is not given and it is the first page.
 
-Save queryParams and add a browser history to allow user refresh page and go back forward throw the browser.
+-Save queryParams and add a browser history to allow user refresh page and go back forward throw the browser.
 
-Add more select filters like gender and status
+-Add more select filters like gender and status
 
 # Angular17Ricky
 

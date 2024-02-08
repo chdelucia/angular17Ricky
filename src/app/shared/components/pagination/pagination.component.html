@@ -2,18 +2,18 @@
 
 <ul class="pagination" *ngIf="currentIndex$ | async as currentIndex">
   <li class="page-item xs-hide" [ngClass]="{disabled:currentIndex === 1}">
-    <a class="page-link" (click)="emitPage(1)">First</a>
+    <a class="page-link" (click)="emitPage(1)" data-cy="p-first">First</a>
   </li>
   <li class="page-item" [class.disabled]="!info.prev">
-    <span class="page-link" (click)="emitPage(currentIndex - 1)">Previous</span>
+    <span class="page-link" (click)="emitPage(currentIndex - 1)" data-cy="p-prev">Previous</span>
   </li>
   <li class="page-item active">
-    <a class="page-link">{{ currentIndex$ | async }} of {{info.pages}}</a>
+    <a class="page-link" data-cy="p-number">{{ currentIndex$ | async }} of {{info.pages}}</a>
   </li>
   <li class="page-item" [class.disabled]="!info.next">
-    <a class="page-link" (click)="emitPage(currentIndex + 1)">Next</a>
+    <a class="page-link" (click)="emitPage(currentIndex + 1)" data-cy="p-next">Next</a>
   </li>
   <li class="page-item xs-hide" [ngClass]="{disabled:currentIndex === info.pages}">
-    <a class="page-link" (click)="emitPage(info.pages)">Last</a>
+    <a class="page-link" (click)="emitPage(info.pages)" data-cy="p-last">Last</a>
   </li>
 </ul>

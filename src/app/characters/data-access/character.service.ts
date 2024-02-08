@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { throwError, Observable, catchError, tap, shareReplay } from 'rxjs';
+import { throwError, Observable, catchError } from 'rxjs';
 import { Character, CharactersDto } from './models';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -10,18 +11,14 @@ import { Character, CharactersDto } from './models';
 })
 export class CharacterService {
 
-  constructor(private http: HttpClient) { }
-
-  prevInfo!: CharactersDto;
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   searchCharacters(query: string, page: number): Observable<CharactersDto> {
     const filter = `${environment.baseUrlAPI}/?name=${query}&page=${page}`
-
     return this.http.get<CharactersDto>(filter)
-    .pipe(
-      tap((data: CharactersDto) => this.prevInfo = data),
-      catchError((err) => this.handleError(err))
-      );
   }
 
   getDetails(id: number): Observable<Character> {
@@ -30,13 +27,7 @@ export class CharacterService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    if (error.status === 0) {
-      console.error('An error occurred:', error.error);
-    }
-    else {
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
+    this.router.navigate(['/error']);
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

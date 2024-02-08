@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
-import { Observable, distinctUntilChanged, merge, skip, take } from 'rxjs';
+import { Observable, distinctUntilChanged, take } from 'rxjs';
 import { FilterNameComponent } from '@shared/components/filter-name/filter-name.component';
 import { CharacterListComponent } from '@characters-feature/character-list/character-list.component';
 import { CharactersDto } from '@characters-data/models';
 import { CharacterService } from '@characters-data/character.service';
 import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { Store } from '@ngrx/store';
-import { CharState, selectCharState, selectPage, selectTextSearch } from '@characters-data/state';
+import { CharState, selectCharState } from '@characters-data/state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
