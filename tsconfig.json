@@ -4,7 +4,8 @@
   "compilerOptions": {
     "paths": {
       "@home/*": ["./src/app/home/*"],
-      "@characters/*": ["./src/app/characters/feautre-characters/*"],
+      "@characters-feature/*": ["./src/app/characters/feautre-characters/*"],
+      "@characters-data/*": ["./src/app/characters/data-access/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@notfound/*": ["./src/app/page-not-found/*"],
       "@env/*": ["./src/environments/*"]

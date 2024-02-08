@@ -22,7 +22,7 @@ export class FilterNameComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchText$.pipe(
-      debounceTime(1000),
+      debounceTime(500),
       distinctUntilChanged()
     ).subscribe(value => this.valueChange.emit(value));
   }

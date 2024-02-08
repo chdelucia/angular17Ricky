@@ -10,16 +10,16 @@
     ></app-pagination>
   </section>
 
-  @if (!noResult) {
-    <app-character-list [chars]="charactersResponse.results"></app-character-list>
-  }@else {
+  @if (noResult) {
     <section class="no-results">
       No results, try other names!
     </section>
+  } @else {
+    <app-character-list [chars]="charactersResponse.results"></app-character-list>
   }
 
-} @placeholder(minimum 200ms) {
-  <img alt="loading..." src="loading.gif" />
+} @placeholder(minimum 1500ms) {
+  <app-loader></app-loader>
 }
 
 

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { throwError, Observable, catchError, of } from 'rxjs';
+import { throwError, Observable, catchError, tap, shareReplay } from 'rxjs';
 import { Character, CharactersDto } from './models';
 
 
@@ -12,13 +12,18 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
+  prevInfo!: CharactersDto;
 
   searchCharacters(query: string, page?: number): Observable<CharactersDto> {
     const filter = page ?
       `${environment.baseUrlAPI}/?name=${query}&page=${page}`
       : query;
+
     return this.http.get<CharactersDto>(filter)
-    .pipe(catchError((err) => this.handleError(err)));
+    .pipe(
+      tap((data: CharactersDto) => this.prevInfo = data),
+      catchError((err) => this.handleError(err))
+      );
   }
 
   getDetails(id: number): Observable<Character> {
@@ -26,7 +31,7 @@ export class CharacterService {
     .pipe(catchError((err) => this.handleError(err)));
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === 0) {
       console.error('An error occurred:', error.error);
     }

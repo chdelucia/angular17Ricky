@@ -1,5 +1,5 @@
 
-<section *ngIf="characters" class="chars-container">
+<section class="chars-container">
   @for (character of characters; track character.id) {
 
     <div class="char-card" [routerLink]="[detailRoute, character.id]">

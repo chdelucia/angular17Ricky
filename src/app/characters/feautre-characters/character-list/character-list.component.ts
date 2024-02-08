@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Character } from '../../data-access/models';
 import { globalRoutes } from '@shared/routes.enum';
 import { RouterModule } from '@angular/router';
+import { Character } from '@characters-data/models';
 
 @Component({
   selector: 'app-character-list',

@@ -11,7 +11,7 @@ export const routes: Routes = [
   {
     path: globalRoutes.CHAR_DETAIL,
     loadComponent: () =>
-    import('@characters/character-detail/character-detail.component').then(
+    import('@characters-feature/character-detail/character-detail.component').then(
       (mod) => mod.CharacterDetailComponent,
     ),
     title: 'details'

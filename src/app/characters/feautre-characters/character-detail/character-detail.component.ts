@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, numberAttribute } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
-import { CharacterService } from '../../data-access/character.service';
-import { Character } from '../../data-access/models';
+import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { globalRoutes } from '@shared/routes.enum';
+import { CharacterService } from '@characters-data/character.service';
+import { Character } from '@characters-data/models';
 
 @Component({
   selector: 'app-character-detail',
@@ -21,19 +21,10 @@ export class CharacterDetailComponent {
 
   listRoute = `/${globalRoutes.HOME}`
 
-  constructor(private characterService: CharacterService, private location:Location) { }
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
     this.character$ = this.characterService.getDetails(this.id);
   }
 
-  onGoBack():void{
-    this.location.back();
-  }
-
-  isOpen = true;
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-  }
 }

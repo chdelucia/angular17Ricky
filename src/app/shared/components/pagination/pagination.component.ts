@@ -23,26 +23,27 @@ export class PaginationComponent implements OnChanges {
 
   @Output() pagination = new EventEmitter<string>();
 
-  currentIndex = 1;
+  currentIndex = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { previousValue, currentValue } = changes['info']
-    if(previousValue && previousValue.count !== currentValue.count) {
+    const { previousValue, currentValue } = changes['info'];
+
+    if( previousValue && currentValue && previousValue.count !== currentValue.count ) {
       this.currentIndex = 1;
     }
   }
 
   emitPage(page: number): void {
-    this.updatePageIndex(page)
-    const url= this.getUrl(page);
-    this.pagination.emit(url);
+    this.updatePageIndex(page);
+    const nextUrl = this.getNextUrl(page);
+    this.pagination.emit(nextUrl);
   }
 
   private updatePageIndex(value: number): void {
     this.currentIndex = value;
   }
 
-  private getUrl(pageIndex: number) :string {
+  private getNextUrl(pageIndex: number) :string {
     let url = this.info.next ?? this.info.prev
     const regex = /page=\d+\b/;
     url = url!.replace(regex, `page=${pageIndex}`);

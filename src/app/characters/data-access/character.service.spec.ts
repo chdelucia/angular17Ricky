@@ -1,5 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+  provideHttpClientTesting
+} from '@angular/common/http/testing';
 
 import { CharacterService } from './character.service';
 
@@ -8,6 +12,9 @@ describe('CharacterService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+      ],
       providers: [
         provideHttpClientTesting(),
       ],
