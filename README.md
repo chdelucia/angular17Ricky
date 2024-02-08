@@ -1,7 +1,7 @@
 
 # Deploy 🚀
   https://rickchdelucia.netlify.app/home
-  
+
 # Info
 
 -Just used ngrx v17.1 cause state was mandatory. 
@@ -12,14 +12,16 @@
 
 -I don't like beer and you didnt give me the chance to drink wine 😭😭😭
 
-# future work
+# Future work
 
 
--Save queryParams and add a browser history to allow user refresh page and go back forward throw the browser.
+-Save queryParams on ulr in order to allow user refresh page and keep the filters.
 
 -Add more select filters like gender and status
 
 -Add skeletons solving repainting problems
+
+-Add linters
 
 # Angular17Ricky
 
