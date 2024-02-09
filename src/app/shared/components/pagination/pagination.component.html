@@ -5,7 +5,7 @@
     <a class="page-link" (click)="emitPage(1)" data-cy="p-first">First</a>
   </li>
   <li class="page-item" [class.disabled]="!info.prev">
-    <span class="page-link" (click)="emitPage(currentIndex - 1)" data-cy="p-prev">Previous</span>
+    <span class="page-link" (click)="emitPage(currentIndex - 1)" data-cy="p-prev">Prev</span>
   </li>
   <li class="page-item active">
     <a class="page-link" data-cy="p-number">{{ currentIndex$ | async }} of {{info.pages}}</a>
