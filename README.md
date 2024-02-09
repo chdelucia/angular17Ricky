@@ -1,6 +1,6 @@
 
 # Deploy 🚀
-  https://rickchdelucia.netlify.app/home
+  https://rickchdelucia.netlify.app
 
 # Info
 
