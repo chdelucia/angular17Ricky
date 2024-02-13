@@ -5,11 +5,11 @@ import {
   OnInit,
   numberAttribute,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { globalRoutes } from '@shared/routes.enum';
-import { CharacterService } from '@characters-data/character.service';
+import { CharacterService } from '@characters-data/services/character.service';
 import { Character } from '@characters-data/models';
 
 @Component({
@@ -27,9 +27,16 @@ export class CharacterDetailComponent implements OnInit {
 
   listRoute = `/${globalRoutes.HOME}`;
 
-  constructor(private characterService: CharacterService) {}
+  constructor(
+    private characterService: CharacterService,
+    private location: Location,
+  ) {}
 
   ngOnInit(): void {
     this.character$ = this.characterService.getDetails(this.id);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

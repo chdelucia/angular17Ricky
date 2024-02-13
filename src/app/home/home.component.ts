@@ -2,17 +2,23 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Input,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
-import { Observable, distinctUntilChanged, take, finalize } from 'rxjs';
+import { Observable, distinctUntilChanged, take, skip } from 'rxjs';
 import { FilterNameComponent } from '@shared/components/filter-name/filter-name.component';
 import { CharacterListComponent } from '@characters-feature/character-list/character-list.component';
 import { CharactersDto } from '@characters-data/models';
-import { CharacterService } from '@characters-data/character.service';
+import { CharacterService } from '@characters-data/services/character.service';
 import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { Store } from '@ngrx/store';
-import { CharState, selectCharState } from '@characters-data/state';
+import {
+  CharState,
+  addTextAndPage,
+  selectCharState,
+} from '@characters-data/state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -29,7 +35,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './home.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  @Input() name = '';
+
+  @Input() page = '1';
+
   charactersResponse!: CharactersDto;
 
   noResult = false;
@@ -44,10 +54,20 @@ export class HomeComponent {
     this.state$ = this.store.select(selectCharState);
 
     this.state$
-      .pipe(distinctUntilChanged(), takeUntilDestroyed())
+      .pipe(distinctUntilChanged(), takeUntilDestroyed(), skip(2))
       .subscribe((response) => {
         this.getCharacters(response.textSearch, response.currentPage);
       });
+  }
+
+  ngOnInit(): void {
+    const page = this.page ? parseInt(this.page) : 1;
+    this.getCharacters(this.name, page);
+    if (page || this.name) {
+      this.store.dispatch(
+        addTextAndPage({ textSearch: this.name ?? '', currentPage: page ?? 1 }),
+      );
+    }
   }
 
   private getCharacters(query: string, pagination: number) {
@@ -61,6 +81,7 @@ export class HomeComponent {
           this.cdr.markForCheck();
         },
         error: () => {
+          //TODO manegar cuando el usuario se inventa la page o el name
           this.noResult = true;
           this.cdr.markForCheck();
         },

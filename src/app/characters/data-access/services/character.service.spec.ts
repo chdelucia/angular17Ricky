@@ -7,7 +7,7 @@ import {
 
 import { CharacterService } from './character.service';
 import { environment } from '@env/environment';
-import { Character, CharactersDto } from './models';
+import { Character, CharactersDto } from '../models';
 
 describe('CharacterService', () => {
   let service: CharacterService;
@@ -33,14 +33,13 @@ describe('CharacterService', () => {
   it('should send a GET request with correct filter parameters', () => {
     const query = 'Batman';
     const page = 1;
-    const expectedUrl = `${environment.baseUrlAPI}/?name=${query}&page=${page}`;
+    const expectedUrl = `${environment.baseUrlAPI}?name=${query}&page=${page}`;
 
     service.searchCharacters(query, page).subscribe();
 
     const req = httpTesting.expectOne(expectedUrl);
-    expect(req.request.url).toEqual(
-      `${environment.baseUrlAPI}/?name=${query}&page=${page}`,
-    );
+    expect(req.request.url).toEqual(`${environment.baseUrlAPI}`);
+    expect(req.request.params.toString()).toEqual('name=Batman&page=1');
     expect(req.request.method).toBe('GET');
 
     req.flush({} as CharactersDto);

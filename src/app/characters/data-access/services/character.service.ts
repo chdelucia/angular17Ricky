@@ -1,8 +1,12 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { throwError, Observable, catchError } from 'rxjs';
-import { Character, CharactersDto } from './models';
+import { Character, CharactersDto } from '../models';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,9 +18,12 @@ export class CharacterService {
     private router: Router,
   ) {}
 
-  searchCharacters(query: string, page: number): Observable<CharactersDto> {
-    const filter = `${environment.baseUrlAPI}/?name=${query}&page=${page}`;
-    return this.http.get<CharactersDto>(filter);
+  searchCharacters(query = '', page = 1): Observable<CharactersDto> {
+    const params = new HttpParams()
+      .set('name', query)
+      .set('page', page.toString());
+
+    return this.http.get<CharactersDto>(environment.baseUrlAPI, { params });
   }
 
   getDetails(id: number): Observable<Character> {

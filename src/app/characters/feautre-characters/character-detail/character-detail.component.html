@@ -15,7 +15,9 @@
 
   <a
     class="button"
-    [routerLink]="listRoute"
+    (click)="goBack()"
+    (keydown.enter)="goBack()"
+    tabindex="0"
     role="button"
     aria-label="go back"
     data-cy="go-back"

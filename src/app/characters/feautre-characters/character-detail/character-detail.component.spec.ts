@@ -1,14 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CharacterDetailComponent } from './character-detail.component';
-import { CharacterService } from '@characters-data/character.service';
+import { CharacterService } from '@characters-data/services/character.service';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Location } from '@angular/common';
 
 const characterServiceStub = {
   getDetails: () => of({ name: 'test' }),
+};
+
+const LocationStub = {
+  back: () => null,
 };
 
 describe('CharacterDetailComponent', () => {
@@ -22,7 +27,10 @@ describe('CharacterDetailComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
       ],
-      providers: [{ CharacterService, useValue: characterServiceStub }],
+      providers: [
+        { CharacterService, useValue: characterServiceStub },
+        { Location, useValue: LocationStub },
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
