@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
 import { Observable, distinctUntilChanged, take } from 'rxjs';
@@ -23,7 +23,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     LoaderComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.sass'
+  styleUrl: './home.component.sass',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
 
@@ -35,7 +36,8 @@ export class HomeComponent {
 
   constructor(
     private characterService: CharacterService,
-    private store: Store
+    private store: Store,
+    private cdr: ChangeDetectorRef,
   ) {
     this.state$ = this.store.select(selectCharState)
 
@@ -58,6 +60,8 @@ export class HomeComponent {
       next : (response) =>  {
         this.noResult = false;
         this.charactersResponse = response;
+
+        this.cdr.markForCheck();
       },
       error : () => this.noResult = true
     });
