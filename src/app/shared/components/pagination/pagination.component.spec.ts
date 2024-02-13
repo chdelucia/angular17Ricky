@@ -11,17 +11,14 @@ describe('PaginationComponent', () => {
   const initialState = {
     response: undefined,
     currentPage: 1,
-    textSearch: ''
+    textSearch: '',
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PaginationComponent],
-      providers: [
-        provideMockStore({ initialState }),
-      ],
-    })
-    .compileComponents();
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PaginationComponent);
     store = TestBed.inject(MockStore);
@@ -37,13 +34,13 @@ describe('PaginationComponent', () => {
   it('should dispatch addPageIndex action when emitPage is called', () => {
     const pageNumber = 2;
     component.emitPage(pageNumber);
-    expect(store.dispatch).toHaveBeenCalledWith((addPageIndex({ currentPage: 2 })));
+    expect(store.dispatch).toHaveBeenCalledWith(
+      addPageIndex({ currentPage: 2 }),
+    );
   });
 
   it('should initialize currentIndex$ with the correct value from store', () => {
-
     spyOn(store, 'select').and.returnValue(of(2));
     expect(component.currentIndex$).toBeDefined();
-
   });
 });

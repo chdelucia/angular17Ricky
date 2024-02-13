@@ -1,19 +1,50 @@
-
-
 <ul class="pagination" *ngIf="currentIndex$ | async as currentIndex">
-  <li class="page-item xs-hide" [ngClass]="{disabled:currentIndex === 1}">
-    <a class="page-link" (click)="emitPage(1)" (keydown.enter)="emitPage(1)" data-cy="p-first" tabindex="0">First</a>
+  <li class="page-item xs-hide" [ngClass]="{ disabled: currentIndex === 1 }">
+    <a
+      class="page-link"
+      (click)="emitPage(1)"
+      (keydown.enter)="emitPage(1)"
+      data-cy="p-first"
+      tabindex="0"
+      >First</a
+    >
   </li>
   <li class="page-item" [class.disabled]="!info.prev">
-    <span class="page-link" (click)="emitPage(currentIndex - 1)" (keydown.enter)="emitPage(currentIndex - 1)" data-cy="p-prev" tabindex="1">Prev</span>
+    <span
+      class="page-link"
+      (click)="emitPage(currentIndex - 1)"
+      (keydown.enter)="emitPage(currentIndex - 1)"
+      data-cy="p-prev"
+      tabindex="1"
+      >Prev</span
+    >
   </li>
   <li class="page-item active">
-    <a class="page-link" data-cy="p-number" tabindex="2">{{ currentIndex$ | async }} of {{info.pages}}</a>
+    <a class="page-link" data-cy="p-number" tabindex="2"
+      >{{ currentIndex$ | async }} of {{ info.pages }}</a
+    >
   </li>
   <li class="page-item" [class.disabled]="!info.next">
-    <a class="page-link" (click)="emitPage(currentIndex + 1)" (keydown.enter)="emitPage(currentIndex + 1)" data-cy="p-next" tabindex="3">Next</a>
+    <a
+      class="page-link"
+      (click)="emitPage(currentIndex + 1)"
+      (keydown.enter)="emitPage(currentIndex + 1)"
+      data-cy="p-next"
+      tabindex="3"
+      >Next</a
+    >
   </li>
-  <li class="page-item xs-hide" [ngClass]="{disabled:currentIndex === info.pages}">
-    <a class="page-link" (click)="emitPage(info.pages)" (keydown.enter)="emitPage(info.pages)" data-cy="p-last" tabindex="4">Last</a>
+  <li
+    class="page-item xs-hide"
+    [ngClass]="{ disabled: currentIndex === info.pages }"
+  >
+    <a
+      class="page-link"
+      (click)="emitPage(info.pages)"
+      (keydown.enter)="emitPage(info.pages)"
+      data-cy="p-last"
+      tabindex="4"
+      >Last</a
+    >
   </li>
 </ul>

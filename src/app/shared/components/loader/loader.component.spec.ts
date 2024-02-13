@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoaderComponent } from './loader.component'
+import { LoaderComponent } from './loader.component';
 
 describe('PaginationComponent', () => {
   let component: LoaderComponent;
@@ -8,9 +8,8 @@ describe('PaginationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoaderComponent]
-    })
-    .compileComponents();
+      imports: [LoaderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;

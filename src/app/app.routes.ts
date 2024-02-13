@@ -6,27 +6,27 @@ export const routes: Routes = [
   {
     path: globalRoutes.HOME,
     component: HomeComponent,
-    title: 'Home'
+    title: 'Home',
   },
   {
     path: globalRoutes.CHAR_DETAIL,
     loadComponent: () =>
-    import('@characters-feature/character-detail/character-detail.component').then(
-      (mod) => mod.CharacterDetailComponent,
-    ),
-    title: 'details'
+      import(
+        '@characters-feature/character-detail/character-detail.component'
+      ).then((mod) => mod.CharacterDetailComponent),
+    title: 'details',
   },
   {
     path: '',
     redirectTo: globalRoutes.HOME,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',
     loadComponent: () =>
-    import('@notfound/page-not-found.component').then(
-      (mod) => mod.PageNotFoundComponent,
-    ),
-    title: '404 error'
+      import('@notfound/page-not-found.component').then(
+        (mod) => mod.PageNotFoundComponent,
+      ),
+    title: '404 error',
   },
 ];

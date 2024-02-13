@@ -10,11 +10,10 @@ import { Character } from '@characters-data/models';
   imports: [CommonModule, RouterModule],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.sass',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterListComponent {
-  @Input({required: true}) characters!: Character[]
+  @Input({ required: true }) characters!: Character[];
 
-  detailRoute = `/${globalRoutes.CHAR_LIST}`
-
+  detailRoute = `/${globalRoutes.CHAR_LIST}`;
 }

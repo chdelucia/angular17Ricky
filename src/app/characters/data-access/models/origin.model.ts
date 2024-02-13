@@ -1,4 +1,3 @@
-import { Location } from "./location.model";
+import { Location } from './location.model';
 
-export interface Origin extends Location {
-}
+export interface Origin extends Location {}

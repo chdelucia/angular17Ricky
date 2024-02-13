@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
-  provideHttpClientTesting
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 
 import { CharacterService } from './character.service';
@@ -15,12 +15,8 @@ describe('CharacterService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
-      providers: [
-        provideHttpClientTesting(),
-      ],
+      imports: [HttpClientTestingModule],
+      providers: [provideHttpClientTesting()],
     });
     service = TestBed.inject(CharacterService);
     httpTesting = TestBed.inject(HttpTestingController);
@@ -41,20 +37,20 @@ describe('CharacterService', () => {
 
     service.searchCharacters(query, page).subscribe();
 
-
     const req = httpTesting.expectOne(expectedUrl);
-    expect(req.request.url).toEqual(`${environment.baseUrlAPI}/?name=${query}&page=${page}`);
+    expect(req.request.url).toEqual(
+      `${environment.baseUrlAPI}/?name=${query}&page=${page}`,
+    );
     expect(req.request.method).toBe('GET');
-
 
     req.flush({} as CharactersDto);
   });
 
   it('should send a GET request with correct URL and return data', () => {
     const id = 123;
-    const testData: Partial<Character> = { id: '3' } ;
+    const testData: Partial<Character> = { id: '3' };
 
-    service.getDetails(id).subscribe()
+    service.getDetails(id).subscribe();
     const req = httpTesting.expectOne(`${environment.baseUrlAPI}/${id}`);
     expect(req.request.method).toBe('GET');
     req.flush(testData);
@@ -65,18 +61,19 @@ describe('CharacterService', () => {
     const errorMessage = 'Something bad happened; please try again later.';
 
     service.getDetails(id).subscribe({
-      error: err => {
+      error: (err) => {
         expect(err).toBeTruthy();
         expect(err.message).toBe(errorMessage);
-      }
+      },
     });
 
     const req = httpTesting.expectOne(`${environment.baseUrlAPI}/${id}`);
     expect(req.request.method).toBe('GET');
 
-    req.error(new ErrorEvent('error', {
-      error: new Error(errorMessage)
-    }));
+    req.error(
+      new ErrorEvent('error', {
+        error: new Error(errorMessage),
+      }),
+    );
   });
-
 });

@@ -7,8 +7,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './page-not-found.component.html',
-  styleUrl: './page-not-found.component.sass'
+  styleUrl: './page-not-found.component.sass',
 })
-export class PageNotFoundComponent {
-
-}
+export class PageNotFoundComponent {}

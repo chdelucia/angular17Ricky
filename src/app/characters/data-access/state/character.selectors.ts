@@ -12,4 +12,3 @@ export const selectTextSearch = createSelector(
   selectCharState,
   (state) => state.textSearch,
 );
-

@@ -8,8 +8,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 const characterServiceStub = {
-  getDetails: () => of({ name : 'test'})
-}
+  getDetails: () => of({ name: 'test' }),
+};
 
 describe('CharacterDetailComponent', () => {
   let component: CharacterDetailComponent;
@@ -20,14 +20,11 @@ describe('CharacterDetailComponent', () => {
       imports: [
         CharacterDetailComponent,
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      providers: [
-        { CharacterService, useValue: characterServiceStub }
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
+      providers: [{ CharacterService, useValue: characterServiceStub }],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CharacterDetailComponent);
     component = fixture.componentInstance;
@@ -39,11 +36,9 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should initialize character$ with data from service', () => {
-
     component.id = 1;
     component.ngOnInit();
 
     expect(component.character$).toBeDefined();
-
   });
 });

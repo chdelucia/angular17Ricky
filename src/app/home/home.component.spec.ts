@@ -12,28 +12,24 @@ describe('HomeComponent', () => {
   const initialState = {
     response: undefined,
     currentPage: 1,
-    textSearch: ''
+    textSearch: '',
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HomeComponent,
-        HttpClientTestingModule,
-      ],
+      imports: [HomeComponent, HttpClientTestingModule],
       providers: [
         provideMockStore({
           initialState,
           selectors: [
             {
               selector: selectCharState,
-              value: [{}]
-            }
-          ]
+              value: [{}],
+            },
+          ],
         }),
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
     store = TestBed.inject(MockStore);

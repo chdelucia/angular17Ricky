@@ -1,10 +1,7 @@
-
-@defer(when charactersResponse) {
+@defer (when charactersResponse) {
   <section class="filters">
     <app-filter-name></app-filter-name>
-    <app-pagination
-      [info]="charactersResponse.info"
-    ></app-pagination>
+    <app-pagination [info]="charactersResponse.info"></app-pagination>
   </section>
 
   @if (noResult) {
@@ -12,12 +9,10 @@
       No results, try other names!
     </section>
   } @else {
-    <app-character-list [characters]="charactersResponse.results"></app-character-list>
+    <app-character-list
+      [characters]="charactersResponse.results"
+    ></app-character-list>
   }
-
-} @placeholder(minimum 400ms) {
+} @placeholder (minimum 400ms) {
   <app-loader></app-loader>
 }
-
-
-

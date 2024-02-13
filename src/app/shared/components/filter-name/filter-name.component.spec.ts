@@ -10,17 +10,14 @@ describe('FilterNameComponent', () => {
   const initialState = {
     response: undefined,
     currentPage: 1,
-    textSearch: ''
+    textSearch: '',
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FilterNameComponent],
-      providers: [
-        provideMockStore({ initialState }),
-      ]
-    })
-    .compileComponents();
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FilterNameComponent);
     store = TestBed.inject(MockStore);
@@ -36,7 +33,9 @@ describe('FilterNameComponent', () => {
   it('should dispatch addTextSearch action when updateStore is called', () => {
     const value = 'test';
     component.updateStore(value);
-    expect(store.dispatch).toHaveBeenCalledWith(addTextSearch({ textSearch: value }));
+    expect(store.dispatch).toHaveBeenCalledWith(
+      addTextSearch({ textSearch: value }),
+    );
   });
 
   it('should return value from event target when getValue is called', () => {
@@ -44,5 +43,4 @@ describe('FilterNameComponent', () => {
     const value = component.getValue(event);
     expect(value).toEqual('test');
   });
-
 });

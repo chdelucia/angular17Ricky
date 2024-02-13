@@ -1,8 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  addPageIndex,
-  addTextSearch
-} from './character.actions';
+import { addPageIndex, addTextSearch } from './character.actions';
 
 export interface CharState {
   currentPage: number;
@@ -11,7 +8,7 @@ export interface CharState {
 
 const initialState: CharState = {
   currentPage: 1,
-  textSearch: ''
+  textSearch: '',
 };
 
 export const characterReducer = createReducer(
@@ -30,5 +27,5 @@ export const characterReducer = createReducer(
       currentPage: 1,
       textSearch,
     }),
-  )
+  ),
 );

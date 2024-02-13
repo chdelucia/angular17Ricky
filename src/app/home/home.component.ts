@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
-import { Observable, distinctUntilChanged, take } from 'rxjs';
+import { Observable, distinctUntilChanged, take, finalize } from 'rxjs';
 import { FilterNameComponent } from '@shared/components/filter-name/filter-name.component';
 import { CharacterListComponent } from '@characters-feature/character-list/character-list.component';
 import { CharactersDto } from '@characters-data/models';
@@ -11,7 +15,6 @@ import { Store } from '@ngrx/store';
 import { CharState, selectCharState } from '@characters-data/state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -20,14 +23,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     FilterNameComponent,
     CharacterListComponent,
     PaginationComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-
   charactersResponse!: CharactersDto;
 
   noResult = false;
@@ -39,33 +41,30 @@ export class HomeComponent {
     private store: Store,
     private cdr: ChangeDetectorRef,
   ) {
-    this.state$ = this.store.select(selectCharState)
+    this.state$ = this.store.select(selectCharState);
 
     this.state$
-    .pipe(
-      distinctUntilChanged(),
-      takeUntilDestroyed()
-    )
-    .subscribe(response => {
-      this.getCharacters(response.textSearch, response.currentPage)
-      }
-    )
+      .pipe(distinctUntilChanged(), takeUntilDestroyed())
+      .subscribe((response) => {
+        this.getCharacters(response.textSearch, response.currentPage);
+      });
   }
-
 
   private getCharacters(query: string, pagination: number) {
-    this.characterService.searchCharacters(query, pagination)
-    .pipe(take(1))
-    .subscribe({
-      next : (response) =>  {
-        this.noResult = false;
-        this.charactersResponse = response;
+    this.characterService
+      .searchCharacters(query, pagination)
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => {
+          this.noResult = false;
+          this.charactersResponse = response;
+          this.cdr.markForCheck();
 
-        this.cdr.markForCheck();
-      },
-      error : () => this.noResult = true
-    });
+        },
+        error: () => {
+          this.noResult = true;
+          this.cdr.markForCheck();
+        }
+      });
   }
-
-
 }

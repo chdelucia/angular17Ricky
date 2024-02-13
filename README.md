@@ -1,10 +1,10 @@
-
 # Deploy 🚀
-  https://rickchdelucia.netlify.app
+
+https://rickchdelucia.netlify.app
 
 # Info
 
--Just used ngrx v17.1 cause state was mandatory. 
+-Just used ngrx v17.1 cause state was mandatory.
 
 -Some unit test are provided (service, pagination and filter component)
 
@@ -13,7 +13,6 @@
 -I don't like beer and you didnt give me the chance to drink wine 😭😭😭
 
 # Future work
-
 
 -Save queryParams on ulr in order to allow user refresh page and keep the filters.
 

@@ -1,27 +1,25 @@
-
-  <section  class="character-container" *ngIf="(character$ | async) as char">
-    <div class="character-card" data-cy="detail-card">
-      <img [src]="char.image" alt="Character Image" class="character-image">
-      <div class="character-details">
-        <div><strong>Name:</strong> {{ char.name }}</div>
-        <div><strong>Species:</strong> {{ char.species }}</div>
-        <div><strong>Gender:</strong> {{ char.gender }}</div>
-        <div><strong>Status:</strong> {{ char.status }}</div>
-        <div *ngIf="char.type"><strong>Type:</strong> {{ char.type }}</div>
-        <div><strong>ID:</strong> {{ char.id }}</div>
-        <div><strong>Location:</strong> {{ char.location.name }}</div>
-        <div><strong>Origin:</strong> {{ char.origin.name }}</div>
-      </div>
+<section class="character-container" *ngIf="character$ | async as char">
+  <div class="character-card" data-cy="detail-card">
+    <img [src]="char.image" alt="Character Image" class="character-image" />
+    <div class="character-details">
+      <div><strong>Name:</strong> {{ char.name }}</div>
+      <div><strong>Species:</strong> {{ char.species }}</div>
+      <div><strong>Gender:</strong> {{ char.gender }}</div>
+      <div><strong>Status:</strong> {{ char.status }}</div>
+      <div *ngIf="char.type"><strong>Type:</strong> {{ char.type }}</div>
+      <div><strong>ID:</strong> {{ char.id }}</div>
+      <div><strong>Location:</strong> {{ char.location.name }}</div>
+      <div><strong>Origin:</strong> {{ char.origin.name }}</div>
     </div>
+  </div>
 
-    <a
-      class="button"
-      [routerLink]="listRoute"
-      role="button"
-      aria-label="go back"
-      data-cy="go-back"
-    >
-      Go back
-    </a>
-  </section>
-
+  <a
+    class="button"
+    [routerLink]="listRoute"
+    role="button"
+    aria-label="go back"
+    data-cy="go-back"
+  >
+    Go back
+  </a>
+</section>
