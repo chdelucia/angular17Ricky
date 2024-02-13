@@ -1,5 +1,7 @@
 describe('My First Test', () => {
   it('Visits the initial project page and check navigation', () => {
+    cy.visit('/');
+    cy.wait(1000);
     cy.visit('/character/3');
 
     cy.wait(1000);
