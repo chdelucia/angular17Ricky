@@ -4,6 +4,7 @@
   "cli": {
     "packageManager": "pnpm",
     "schematicCollections": [
+      "@angular-eslint/schematics",
       "@cypress/schematic",
       "@schematics/angular"
     ]
@@ -151,6 +152,15 @@
             "production": {
               "devServerTarget": "angular17Ricky:serve:production"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }

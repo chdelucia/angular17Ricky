@@ -4,8 +4,6 @@ import {
   addTextSearch
 } from './character.actions';
 
-import { CharactersDto } from '@characters-data/models';
-
 export interface CharState {
   currentPage: number;
   textSearch: string;

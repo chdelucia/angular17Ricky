@@ -13,7 +13,7 @@ import { Character } from '@characters-data/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterListComponent {
-  @Input({required: true, alias: 'chars'}) characters!: Character[]
+  @Input({required: true}) characters!: Character[]
 
   detailRoute = `/${globalRoutes.CHAR_LIST}`
 
