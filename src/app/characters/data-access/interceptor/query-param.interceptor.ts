@@ -16,7 +16,6 @@ export const queryParamInterceptor: HttpInterceptorFn = (
   const queryParams = modifiedRequest.params.toString();
 
   const router = inject(Router);
-  console.log(queryParams);
   if (queryParams) {
     const paramsObj: Params = {
       name: modifiedRequest.params.get('name'),
@@ -35,6 +34,5 @@ export function loggingInterceptor(
   req: HttpRequest<unknown>,
   next: HttpHandlerFn,
 ): Observable<HttpEvent<unknown>> {
-  console.log(req.url);
   return next(req);
 }
