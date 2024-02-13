@@ -59,12 +59,11 @@ export class HomeComponent {
           this.noResult = false;
           this.charactersResponse = response;
           this.cdr.markForCheck();
-
         },
         error: () => {
           this.noResult = true;
           this.cdr.markForCheck();
-        }
+        },
       });
   }
 }
