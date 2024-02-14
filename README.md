@@ -14,13 +14,15 @@ https://rickchdelucia.netlify.app
 
 # Future work
 
--Save queryParams on ulr in order to allow user refresh page and keep the filters.
+- ~~Save queryParams on ulr in order to allow user refresh page and keep the filters.~~
 
 -Add more select filters like gender and status
 
 -Add skeletons solving repainting problems
 
--Add linters
+- ~~Add linters~~
+
+- Add css reset
 
 # Angular17Ricky
 
