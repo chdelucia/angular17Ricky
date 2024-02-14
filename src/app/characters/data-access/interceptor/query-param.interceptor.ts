@@ -1,9 +1,4 @@
-import {
-  HttpEvent,
-  HttpHandlerFn,
-  HttpInterceptorFn,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpEvent, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -29,10 +24,3 @@ export const queryParamInterceptor: HttpInterceptorFn = (
 
   return next(req);
 };
-
-export function loggingInterceptor(
-  req: HttpRequest<unknown>,
-  next: HttpHandlerFn,
-): Observable<HttpEvent<unknown>> {
-  return next(req);
-}
