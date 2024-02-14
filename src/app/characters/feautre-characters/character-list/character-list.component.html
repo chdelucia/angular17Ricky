@@ -5,7 +5,10 @@
       [routerLink]="[detailRoute, character.id]"
       data-cy="char-card"
     >
-      <div class="char-card__img" [class.dead]="character.status === 'Dead'">
+      <div
+        class="char-card__img"
+        [class.dead]="character.status === deadStatus"
+      >
         <img [src]="character.image" alt="Avatar" />
       </div>
       <div class="char-card__info">

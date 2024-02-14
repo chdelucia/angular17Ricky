@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { globalRoutes } from '@shared/routes.enum';
 import { RouterModule } from '@angular/router';
 import { Character } from '@characters-data/models';
+import { CharacterStatus } from '@characters-feature/enums';
 
 @Component({
   selector: 'app-character-list',
@@ -14,6 +15,8 @@ import { Character } from '@characters-data/models';
 })
 export class CharacterListComponent {
   @Input({ required: true }) characters!: Character[];
+
+  deadStatus = CharacterStatus.DEAD;
 
   detailRoute = `/${globalRoutes.CHAR_LIST}`;
 }
