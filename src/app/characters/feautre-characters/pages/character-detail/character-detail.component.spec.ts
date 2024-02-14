@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharacterDetailComponent } from './character-detail.component';
 import { CharacterService } from '@characters-data/services';
 import { of } from 'rxjs';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, input } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
@@ -44,7 +44,7 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should initialize character$ with data from service', () => {
-    component.id = 1;
+    component.id = input<number>(1);
     component.ngOnInit();
 
     expect(component.character$).toBeDefined();
