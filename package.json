@@ -12,7 +12,8 @@
     "cypress:run": "cypress run",
     "lint": "ng lint",
     "prettier:write": "npx prettier --write .",
-    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless --code-coverage"
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless --code-coverage",
+    "sonar": "sonar-scanner"
   },
   "private": true,
   "dependencies": {
