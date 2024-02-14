@@ -22,7 +22,7 @@ https://rickchdelucia.netlify.app
 
 - ~~Add linters~~
 
-- ~~Split code on small components and pages ~~
+- ~~Split code on small components and pages~~
 
 - Add css reset
 

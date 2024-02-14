@@ -13,7 +13,10 @@
     "lint": "ng lint",
     "prettier:write": "npx prettier --write .",
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless --code-coverage",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner",
+    "update-hooks": "simple-git-hooks",
+    "pre-commit": "lint-staged",
+    "pre-push": "pnpm run test:ci"
   },
   "private": true,
   "dependencies": {
@@ -55,8 +58,23 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "^15.2.2",
     "prettier": "3.2.5",
     "prettier-eslint": "^16.3.0",
+    "simple-git-hooks": "^2.9.0",
     "typescript": "~5.2.2"
+  },
+  "lint-staged": {
+    "*.{ts,html}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*spec.ts": [
+      "test"
+    ],
+    "*.scss": [
+      "prettier --write"
+    ]
   }
+
 }
