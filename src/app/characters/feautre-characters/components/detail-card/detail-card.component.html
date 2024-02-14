@@ -1,0 +1,13 @@
+<div class="detail-card" data-cy="detail-card">
+  <img [src]="char.image" alt="Character Image" class="detail-card__image" />
+  <div class="detail-card__details">
+    <div><strong>Name:</strong> {{ char.name }}</div>
+    <div><strong>Species:</strong> {{ char.species }}</div>
+    <div><strong>Gender:</strong> {{ char.gender }}</div>
+    <div><strong>Status:</strong> {{ char.status }}</div>
+    <div *ngIf="char.type"><strong>Type:</strong> {{ char.type }}</div>
+    <div><strong>ID:</strong> {{ char.id }}</div>
+    <div><strong>Location:</strong> {{ char.location.name }}</div>
+    <div><strong>Origin:</strong> {{ char.origin.name }}</div>
+  </div>
+</div>

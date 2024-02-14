@@ -9,13 +9,14 @@ import { CommonModule, Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { globalRoutes } from '@shared/routes.enum';
-import { CharacterService } from '@characters-data/services/character.service';
+import { CharacterService } from '@characters-data/services';
 import { Character } from '@characters-data/models';
+import { DetailCardComponent } from '@characters-feature/components';
 
 @Component({
   selector: 'app-character-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, DetailCardComponent],
   templateUrl: './character-detail.component.html',
   styleUrl: './character-detail.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,

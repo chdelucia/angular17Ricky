@@ -1,23 +1,11 @@
 <section class="chars-container">
   @for (character of characters; track character.id) {
-    <div
+    <app-character-card
+      [character]="character"
       class="char-card"
       [routerLink]="[detailRoute, character.id]"
       data-cy="char-card"
     >
-      <div
-        class="char-card__img"
-        [class.dead]="character.status === deadStatus"
-      >
-        <img [src]="character.image" alt="Avatar" />
-
-        @if (character.status === deadStatus) {
-          <div class="char-card__img__rip">R I P</div>
-        }
-      </div>
-      <div class="char-card__info">
-        <p class="char-card__info__name">{{ character.name }}</p>
-      </div>
-    </div>
+    </app-character-card>
   }
 </section>
