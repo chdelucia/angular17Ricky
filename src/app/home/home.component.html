@@ -7,9 +7,7 @@
   </section>
 
   @if (noResult) {
-    <section class="no-results" data-cy="no-results">
-      No results, try other names!
-    </section>
+    <app-shared-no-results></app-shared-no-results>
   } @else {
     <app-character-list
       [characters]="charactersResponse.results"

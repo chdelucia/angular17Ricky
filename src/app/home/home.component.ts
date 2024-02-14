@@ -14,6 +14,7 @@ import {
   LoaderComponent,
   PaginationComponent,
   FilterNameComponent,
+  NoResultsComponent,
 } from '@shared/components';
 import { Store } from '@ngrx/store';
 import {
@@ -32,6 +33,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     CharacterListComponent,
     PaginationComponent,
     LoaderComponent,
+    NoResultsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
