@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-loader',
+  selector: 'app-shared-loader',
   standalone: true,
   imports: [],
   templateUrl: './loader.component.html',

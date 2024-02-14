@@ -6,7 +6,7 @@ import { Observable, Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-filter-name',
+  selector: 'app-shared-filter-name',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './filter-name.component.html',

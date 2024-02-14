@@ -1,7 +1,9 @@
 @defer (when charactersResponse) {
   <section class="filters">
-    <app-filter-name></app-filter-name>
-    <app-pagination [info]="charactersResponse.info"></app-pagination>
+    <app-shared-filter-name></app-shared-filter-name>
+    <app-shared-pagination
+      [info]="charactersResponse.info"
+    ></app-shared-pagination>
   </section>
 
   @if (noResult) {
@@ -14,5 +16,5 @@
     ></app-character-list>
   }
 } @placeholder (minimum 400ms) {
-  <app-loader></app-loader>
+  <app-shared-loader></app-shared-loader>
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { addPageIndex, selectPage } from '@characters-data/state';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'app-shared-pagination',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './pagination.component.html',
