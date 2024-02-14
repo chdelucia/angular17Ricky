@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "paths": {
       "@home/*": ["./src/app/home/*"],
       "@characters-feature/*": ["./src/app/characters/feautre-characters/*"],

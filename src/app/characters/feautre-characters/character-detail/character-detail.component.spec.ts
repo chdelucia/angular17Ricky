@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CharacterDetailComponent } from './character-detail.component';
-import { CharacterService } from '@characters-data/services/character.service';
+import { CharacterService } from '@characters-data/services';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

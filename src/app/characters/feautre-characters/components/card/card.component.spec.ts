@@ -13,6 +13,20 @@ describe('CardComponent', () => {
 
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
+    component.character = {
+      id: '1',
+      image: '',
+      name: 'test',
+      status: 'Dead',
+      species: 'Human',
+      gender: 'Male',
+      origin: { name: 'casa', url: 'test' },
+      location: { name: 'casa', url: 'test' },
+      type: 'typeTest',
+      url: ['urlTest'],
+      episode: ['2'],
+      created: 'today',
+    };
     fixture.detectChanges();
   });
 
