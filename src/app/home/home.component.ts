@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
 import { Observable, distinctUntilChanged, take, skip } from 'rxjs';
 import { FilterNameComponent } from '@shared/components/filter-name/filter-name.component';
-import { CharacterListComponent } from '@characters-feature/character-list/character-list.component';
+import { CharacterListComponent } from '@characters-feature/pages';
 import { CharactersDto } from '@characters-data/models';
 import { CharacterService } from '@characters-data/services/character.service';
 import { LoaderComponent } from '@shared/components/loader/loader.component';
