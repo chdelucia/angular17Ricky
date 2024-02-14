@@ -1,15 +1,19 @@
-<section class="character-container" *ngIf="character$ | async as char">
-  <app-character-detail-card [char]="char"></app-character-detail-card>
+@defer (when loaded()) {
+  <section class="character-container" *ngIf="item() as char">
+    <app-character-detail-card [char]="char"></app-character-detail-card>
 
-  <a
-    class="button"
-    (click)="goBack()"
-    (keydown.enter)="goBack()"
-    tabindex="0"
-    role="button"
-    aria-label="go back"
-    data-cy="go-back"
-  >
-    Go back
-  </a>
-</section>
+    <a
+      class="button"
+      (click)="goBack()"
+      (keydown.enter)="goBack()"
+      tabindex="0"
+      role="button"
+      aria-label="go back"
+      data-cy="go-back"
+    >
+      Go back
+    </a>
+  </section>
+} @placeholder (minimum 400ms) {
+  <app-shared-loader></app-shared-loader>
+}
