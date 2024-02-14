@@ -10,6 +10,10 @@
         [class.dead]="character.status === deadStatus"
       >
         <img [src]="character.image" alt="Avatar" />
+
+        @if (character.status === deadStatus) {
+          <div class="char-card__img__rip">R I P</div>
+        }
       </div>
       <div class="char-card__info">
         <p class="char-card__info__name">{{ character.name }}</p>
