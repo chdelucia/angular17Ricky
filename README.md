@@ -16,9 +16,9 @@ https://rickchdelucia.netlify.app
 
 - ~~Save queryParams on ulr in order to allow user refresh page and keep the filters.~~
 
--Add more select filters like gender and status
+- Add more select filters like gender and status
 
--Add skeletons solving repainting problems
+- Add skeletons solving repainting problems
 
 - ~~Add linters~~
 
