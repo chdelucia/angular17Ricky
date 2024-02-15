@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-shared-no-results',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './no-results.component.html',
   styleUrl: './no-results.component.sass',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoResultsComponent {}

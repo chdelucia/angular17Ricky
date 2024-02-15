@@ -66,12 +66,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const page = this.page ? parseInt(this.page) : 1;
-    this.getCharacters(this.name, page);
-    if (page || this.name) {
-      this.store.dispatch(
-        addTextAndPage({ textSearch: this.name ?? '', currentPage: page ?? 1 }),
-      );
-    }
+    const name = this.name ?? '';
+
+    this.getCharacters(name, page);
+    this.updateState(name, page);
+  }
+
+  private updateState(name: string, page: number): void {
+    this.store.dispatch(
+      addTextAndPage({ textSearch: name, currentPage: page }),
+    );
   }
 
   private getCharacters(query: string, pagination: number) {
