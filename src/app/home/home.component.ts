@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, distinctUntilChanged, take, skip } from 'rxjs';
+import { Observable, take, skip } from 'rxjs';
 import { CharacterListComponent } from '@characters-feature/pages';
 import { CharactersDto } from '@characters-data/models';
 import { CharacterService } from '@characters-data/services/character.service';
@@ -57,11 +57,9 @@ export class HomeComponent implements OnInit {
   ) {
     this.state$ = this.store.select(selectCharState);
 
-    this.state$
-      .pipe(distinctUntilChanged(), takeUntilDestroyed(), skip(2))
-      .subscribe((response) => {
-        this.getCharacters(response.textSearch, response.currentPage);
-      });
+    this.state$.pipe(takeUntilDestroyed(), skip(2)).subscribe((response) => {
+      this.getCharacters(response.textSearch, response.currentPage);
+    });
   }
 
   ngOnInit(): void {
