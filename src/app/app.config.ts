@@ -2,6 +2,7 @@ import { ApplicationConfig } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
+  withHashLocation,
   withViewTransitions,
 } from '@angular/router';
 
@@ -13,7 +14,12 @@ import { queryParamInterceptor } from '@characters-data/interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
+    provideRouter(
+      routes,
+      withHashLocation(),
+      withComponentInputBinding(),
+      withViewTransitions(),
+    ),
     provideHttpClient(withInterceptors([queryParamInterceptor])),
     provideStore({ chars: characterReducer }),
   ],
