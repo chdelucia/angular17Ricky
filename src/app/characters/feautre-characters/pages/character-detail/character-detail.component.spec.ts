@@ -44,6 +44,7 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should initialize character$ with data from service', () => {
+    fixture.componentRef.setInput('id', 8);
     component.id = input<number>(1);
     component.ngOnInit();
 

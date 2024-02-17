@@ -31,4 +31,28 @@ body
 ::view-transition-new(root)
   animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right
 
+.skeleton
+  background-color: #f0f0f0
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.15))
+  animation: pulse .4s infinite alternate
+  animation: shimmer 8s infinite linear
+  @keyframes pulse
+    0%
+      opacity: 0.6
+    100%
+      opacity: 1
+  @keyframes shimmer
+    0%
+      background-position: -1000px
+    100%
+      background-position: 1000px
+
+.skeleton-pulse
+  background-color: #f0f0f0
+  animation: pulse .4s infinite alternate
+  @keyframes pulse
+    0%
+      opacity: 0.6
+    100%
+      opacity: 1
 

@@ -13,6 +13,10 @@
       [characters]="charactersResponse.results"
     ></app-character-list>
   }
-} @placeholder (minimum 400ms) {
-  <app-shared-loader></app-shared-loader>
+} @placeholder (minimum 2000ms) {
+  <section class="filters">
+    <app-shared-filter-name-skeleton></app-shared-filter-name-skeleton>
+    <app-shared-filter-name-skeleton></app-shared-filter-name-skeleton>
+  </section>
+  <app-card-skeleton></app-card-skeleton>
 }

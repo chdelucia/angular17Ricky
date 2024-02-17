@@ -1,0 +1,35 @@
+.chars-container
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  gap: 1.88rem
+  justify-content: space-between
+
+  .char-card
+    flex: 1 0 300px
+    border: 1px solid #000
+    transition: .4s
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+    border-radius:10px
+    overflow: hidden
+    background: #fff
+
+    &__img
+      width: 100%
+      min-height: 304px
+      background-color: #ccc
+
+    &__info
+      padding: 0 1rem
+      font-size: 2rem
+      &__name
+        height: 37px
+        background-color: #ccc
+
+@media all and (min-width: 1200px)
+  .char-card
+    max-width: 300px
+    justify-content: space-between
+
+  .chars-container
+    justify-content: normal

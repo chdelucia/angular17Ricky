@@ -23,6 +23,8 @@ import {
   selectCharState,
 } from '@characters-data/state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CardSkeletonComponent } from '@characters-feature/components/card-skeleton/card-skeleton.component';
+import { FilterNameSkeletonComponent } from '@shared/components/filter-name-skeleton/filter-name-skeleton.component';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +36,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     PaginationComponent,
     LoaderComponent,
     NoResultsComponent,
+    CardSkeletonComponent,
+    FilterNameSkeletonComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
@@ -79,7 +83,10 @@ export class HomeComponent implements OnInit {
   private getCharacters(query: string, pagination: number) {
     this.characterService
       .searchCharacters(query, pagination)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        //catchError((err) => of([] as any)),
+      )
       .subscribe({
         next: (response) => {
           this.noResult = false;

@@ -69,9 +69,6 @@
       "prettier --write",
       "eslint --fix"
     ],
-    "*spec.ts": [
-      "test"
-    ],
     "*.scss": [
       "prettier --write"
     ]
