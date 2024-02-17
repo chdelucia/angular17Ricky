@@ -91,6 +91,9 @@ export class HomeComponent implements OnInit {
           this.noResult = true;
           this.cdr.markForCheck();
         },
+        complete: () => {
+          console.log('subscription complete');
+        },
       });
   }
 }
