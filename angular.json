@@ -132,7 +132,7 @@
           "builder": "@cypress/schematic:cypress",
           "options": {
             "devServerTarget": "angular17Ricky:serve",
-            "watch": true,
+            "watch": false,
             "headless": false
           },
           "configurations": {

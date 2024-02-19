@@ -9,7 +9,7 @@ import {
   getNoResultsMessage,
 } from '../support/home.po';
 
-describe('My First Test', () => {
+describe('Character list', () => {
   beforeEach(() => {
     cy.visit('/');
   });

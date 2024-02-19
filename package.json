@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "e2e": "ng e2e",
+    "e2e:headless": "ng e2e --headless",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "lint": "ng lint",
@@ -16,7 +17,7 @@
     "sonar": "sonar-scanner",
     "update-hooks": "simple-git-hooks",
     "pre-commit": "lint-staged",
-    "pre-push": "pnpm run test:ci"
+    "pre-push": "pnpm run test:ci && pnpm run e2e:headless"
   },
   "private": true,
   "dependencies": {
