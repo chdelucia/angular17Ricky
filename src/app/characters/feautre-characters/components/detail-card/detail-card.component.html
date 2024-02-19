@@ -1,5 +1,10 @@
 <div class="detail-card" data-cy="detail-card">
-  <img [src]="char.image" alt="Character Image" class="detail-card__image" />
+  <img
+    [src]="char.image"
+    alt="Character Image"
+    class="detail-card__image"
+    loading="lazy"
+  />
   <div class="detail-card__details">
     <div><strong>Name:</strong> {{ char.name }}</div>
     <div><strong>Species:</strong> {{ char.species }}</div>

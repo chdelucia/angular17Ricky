@@ -28,8 +28,8 @@ describe('CharacterDetailComponent', () => {
         RouterTestingModule,
       ],
       providers: [
-        { CharacterService, useValue: characterServiceStub },
-        { Location, useValue: LocationStub },
+        { provide: CharacterService, useValue: characterServiceStub },
+        { provide: Location, useValue: LocationStub },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

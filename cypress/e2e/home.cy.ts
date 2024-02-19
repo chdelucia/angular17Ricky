@@ -1,5 +1,4 @@
 import {
-  getLoader,
   getSearchInput,
   getPaginationNextButton,
   getPaginationLastButton,
@@ -13,8 +12,6 @@ import {
 describe('My First Test', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.get('[data-cy="loader"]').contains('Loading results...');
-    getLoader().should('not.exist');
   });
 
   it('Visits the initial project page and check navigation', () => {

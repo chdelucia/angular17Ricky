@@ -1,4 +1,12 @@
+import { getLoader } from '../support/home.po';
+
 describe('My First Test', () => {
+  beforeEach(() => {
+    cy.visit('/');
+    cy.get('[data-cy="loader"]').contains('Loading results...');
+    getLoader().should('not.exist');
+  });
+
   it('Visits the initial project page and check navigation', () => {
     cy.visit('/');
 
