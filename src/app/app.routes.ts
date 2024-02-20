@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { detailsResolver } from '@characters-data/resolver/details.resolver';
 import { HomeComponent } from '@home/home.component';
 import { globalRoutes } from '@shared/routes.enum';
 
@@ -6,7 +7,7 @@ export const routes: Routes = [
   {
     path: globalRoutes.HOME,
     component: HomeComponent,
-    title: 'Home',
+    title: 'Home | Angular 17 Ricky & Morty',
   },
   {
     path: globalRoutes.CHAR_DETAIL,
@@ -14,7 +15,7 @@ export const routes: Routes = [
       import('@characters-feature/pages').then(
         (mod) => mod.CharacterDetailComponent,
       ),
-    title: 'details',
+    resolve: { detail: detailsResolver },
   },
   {
     path: '',
@@ -27,6 +28,6 @@ export const routes: Routes = [
       import('@notfound/page-not-found.component').then(
         (mod) => mod.PageNotFoundComponent,
       ),
-    title: '404 error',
+    title: '404 error | Angular 17 Ricky & Morty',
   },
 ];

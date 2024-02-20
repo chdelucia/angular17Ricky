@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterDetailComponent } from './character-detail.component';
+import { CharacterDetailComponent } from './character-detail.component.old';
 import { CharacterService } from '@characters-data/services';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA, input } from '@angular/core';

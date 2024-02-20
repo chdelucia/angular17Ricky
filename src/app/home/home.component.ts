@@ -95,6 +95,7 @@ export class HomeComponent implements OnInit {
         },
         error: () => {
           //TODO manejar cuando el usuario se inventa la page o el name
+          console.log('error');
           this.noResult = true;
           this.cdr.markForCheck();
         },

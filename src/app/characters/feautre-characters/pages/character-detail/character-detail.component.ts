@@ -1,21 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Injector,
-  OnInit,
-  Signal,
-  computed,
-  inject,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { Observable, take } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { globalRoutes } from '@shared/routes.enum';
-import { CharacterService } from '@characters-data/services';
 import { Character } from '@characters-data/models';
 import { DetailCardComponent } from '@characters-feature/components';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { LoaderComponent } from '@shared/components';
 
 @Component({
@@ -27,27 +15,17 @@ import { LoaderComponent } from '@shared/components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterDetailComponent implements OnInit {
-  id = input<number>(1);
-
-  character$!: Observable<Character>;
-
-  item!: Signal<Character | undefined>;
-  private injector = inject(Injector);
-
-  loaded = computed(() => {
-    return !!this.item()?.name;
-  });
+  character!: Character;
 
   listRoute = `/${globalRoutes.HOME}`;
 
   constructor(
-    private characterService: CharacterService,
     private location: Location,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.character$ = this.characterService.getDetails(this.id()).pipe(take(1));
-    this.item = toSignal(this.character$, { injector: this.injector });
+    this.character = this.route.snapshot.data['detail'];
   }
 
   goBack(): void {

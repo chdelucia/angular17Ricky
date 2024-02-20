@@ -34,7 +34,7 @@ export class CharacterService {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error(error);
-    this.router.navigate(['/error']);
+    //this.router.navigate(['/error']);
     return throwError(
       () => new Error('Something bad happened; please try again later.'),
     );
