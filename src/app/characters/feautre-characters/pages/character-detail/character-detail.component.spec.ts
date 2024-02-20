@@ -20,7 +20,16 @@ const LocationStub = {
 const activatedRouteMock = {
   snapshot: {
     data: {
-      detail: { name: 'test' },
+      detail: {
+        id: 2,
+        name: 'test',
+        status: 'Alive',
+        species: 'Human',
+        type: '',
+        gender: 'Male',
+        origin: { name: 'testorigin' },
+        location: { name: 'testlocation' },
+      },
     },
   },
 };
@@ -53,9 +62,13 @@ describe('CharacterDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should initialize character$ with data from service', () => {
-    //fixture.componentRef.setInput('id', 8);
-    //component.id = input<number>(1);
-    component.ngOnInit();
+  it('should set character property from route snapshot data', () => {
+    expect(component.character.name).toEqual('test');
+  });
+
+  it('should navigate back when goBack() is called', () => {
+    const locationSpy = spyOn(LocationStub, 'back');
+    component.goBack();
+    expect(locationSpy).toHaveBeenCalled();
   });
 });
