@@ -7,6 +7,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 const characterServiceStub = {
   getDetails: () => of({ name: 'test' }),
@@ -14,6 +15,14 @@ const characterServiceStub = {
 
 const LocationStub = {
   back: () => null,
+};
+
+const activatedRouteMock = {
+  snapshot: {
+    data: {
+      detail: { name: 'test' },
+    },
+  },
 };
 
 describe('CharacterDetailComponent', () => {
@@ -30,6 +39,7 @@ describe('CharacterDetailComponent', () => {
       providers: [
         { provide: CharacterService, useValue: characterServiceStub },
         { provide: Location, useValue: LocationStub },
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
