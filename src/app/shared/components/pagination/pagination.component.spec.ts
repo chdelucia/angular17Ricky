@@ -10,8 +10,8 @@ describe('PaginationComponent', () => {
   let store: MockStore;
   const initialState = {
     response: undefined,
-    currentPage: 1,
-    textSearch: '',
+    page: 1,
+    name: '',
   };
 
   beforeEach(async () => {
@@ -34,9 +34,7 @@ describe('PaginationComponent', () => {
   it('should dispatch addPageIndex action when emitPage is called', () => {
     const pageNumber = 2;
     component.emitPage(pageNumber);
-    expect(store.dispatch).toHaveBeenCalledWith(
-      addPageIndex({ currentPage: 2 }),
-    );
+    expect(store.dispatch).toHaveBeenCalledWith(addPageIndex({ page: 2 }));
   });
 
   it('should initialize currentIndex$ with the correct value from store', () => {

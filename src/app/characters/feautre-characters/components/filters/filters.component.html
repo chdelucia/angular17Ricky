@@ -1,0 +1,13 @@
+<form [formGroup]="form" class="filters">
+  <app-shared-filter-name></app-shared-filter-name>
+  <app-shared-filter-select
+    formControlName="selectGender"
+    label="Gender"
+    [options]="genderOptions"
+  ></app-shared-filter-select>
+  <app-shared-filter-select
+    formControlName="selectStatus"
+    [options]="statusOptions"
+    label="Status"
+  ></app-shared-filter-select>
+</form>

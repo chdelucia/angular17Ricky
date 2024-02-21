@@ -5,10 +5,20 @@ export const selectCharState = createFeatureSelector<CharState>('chars');
 
 export const selectPage = createSelector(
   selectCharState,
-  (state) => state.currentPage,
+  (state) => state.page,
 );
 
 export const selectTextSearch = createSelector(
   selectCharState,
-  (state) => state.textSearch,
+  (state) => state.name,
+);
+
+export const selectGender = createSelector(
+  selectCharState,
+  (state) => state.gender,
+);
+
+export const selectStatus = createSelector(
+  selectCharState,
+  (state) => state.status,
 );

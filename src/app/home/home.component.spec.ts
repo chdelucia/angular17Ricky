@@ -11,8 +11,8 @@ describe('HomeComponent', () => {
 
   const initialState = {
     response: undefined,
-    currentPage: 1,
-    textSearch: '',
+    page: 1,
+    name: '',
   };
 
   beforeEach(async () => {

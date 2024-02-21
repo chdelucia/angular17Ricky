@@ -23,6 +23,8 @@ export const queryParamInterceptor: HttpInterceptorFn = (
           const paramsObj: Params = {
             name: modifiedRequest.params.get('name'),
             page: modifiedRequest.params.get('page'),
+            gender: modifiedRequest.params.get('gender'),
+            status: modifiedRequest.params.get('status'),
           };
           router.navigate([], {
             queryParamsHandling: 'merge',

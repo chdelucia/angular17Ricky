@@ -1,10 +1,8 @@
 @defer (when charactersResponse) {
-  <section class="filters">
-    <app-shared-filter-name></app-shared-filter-name>
-    <app-shared-pagination
-      [info]="charactersResponse.info"
-    ></app-shared-pagination>
-  </section>
+  <app-filters></app-filters>
+  <app-shared-pagination
+    [info]="charactersResponse.info"
+  ></app-shared-pagination>
 
   @if (noResult) {
     <app-shared-no-results></app-shared-no-results>

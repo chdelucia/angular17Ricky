@@ -27,7 +27,7 @@ export class FilterNameComponent {
   }
 
   updateStore(value: string): void {
-    this.store.dispatch(addTextSearch({ textSearch: value }));
+    this.store.dispatch(addTextSearch({ name: value }));
   }
 
   getValue(event: Event): string {

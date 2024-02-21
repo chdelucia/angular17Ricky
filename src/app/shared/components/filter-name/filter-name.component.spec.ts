@@ -9,8 +9,8 @@ describe('FilterNameComponent', () => {
   let store: MockStore;
   const initialState = {
     response: undefined,
-    currentPage: 1,
-    textSearch: '',
+    page: 1,
+    name: '',
   };
 
   beforeEach(async () => {
@@ -33,9 +33,7 @@ describe('FilterNameComponent', () => {
   it('should dispatch addTextSearch action when updateStore is called', () => {
     const value = 'test';
     component.updateStore(value);
-    expect(store.dispatch).toHaveBeenCalledWith(
-      addTextSearch({ textSearch: value }),
-    );
+    expect(store.dispatch).toHaveBeenCalledWith(addTextSearch({ name: value }));
   });
 
   it('should return value from event target when getValue is called', () => {

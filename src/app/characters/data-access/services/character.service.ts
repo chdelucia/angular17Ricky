@@ -8,6 +8,7 @@ import { environment } from '@env/environment';
 import { throwError, Observable, catchError } from 'rxjs';
 import { Character, CharactersDto } from '../models';
 import { Router } from '@angular/router';
+import { CharState } from '@characters-data/state';
 
 @Injectable({
   providedIn: 'root',
@@ -18,10 +19,12 @@ export class CharacterService {
     private router: Router,
   ) {}
 
-  searchCharacters(query = '', page = 1): Observable<CharactersDto> {
-    const params = new HttpParams()
-      .set('name', query)
-      .set('page', page.toString());
+  searchCharacters(item: Partial<CharState>): Observable<CharactersDto> {
+    let params = new HttpParams();
+
+    Object.entries(item).forEach(([key, value]) => {
+      if (value) params = params.set(key, value);
+    });
 
     return this.http.get<CharactersDto>(environment.baseUrlAPI, { params });
   }

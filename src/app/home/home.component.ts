@@ -4,6 +4,7 @@ import {
   Component,
   Input,
   OnInit,
+  numberAttribute,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, take, skip } from 'rxjs';
@@ -19,12 +20,13 @@ import {
 import { Store } from '@ngrx/store';
 import {
   CharState,
-  addTextAndPage,
   selectCharState,
+  updateFilters,
 } from '@characters-data/state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CardSkeletonComponent } from '@characters-feature/components/card-skeleton/card-skeleton.component';
 import { FilterNameSkeletonComponent } from '@shared/components/filter-name-skeleton/filter-name-skeleton.component';
+import { FiltersComponent } from '@characters-feature/components/filters/filters.component';
 
 @Component({
   selector: 'app-home',
@@ -38,6 +40,7 @@ import { FilterNameSkeletonComponent } from '@shared/components/filter-name-skel
     NoResultsComponent,
     CardSkeletonComponent,
     FilterNameSkeletonComponent,
+    FiltersComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
@@ -45,8 +48,9 @@ import { FilterNameSkeletonComponent } from '@shared/components/filter-name-skel
 })
 export class HomeComponent implements OnInit {
   @Input() name = '';
-
-  @Input() page = '1';
+  @Input() gender = '';
+  @Input() status = '';
+  @Input({ transform: numberAttribute }) page = 1;
 
   charactersResponse!: CharactersDto;
 
@@ -62,27 +66,28 @@ export class HomeComponent implements OnInit {
     this.state$ = this.store.select(selectCharState);
 
     this.state$.pipe(takeUntilDestroyed(), skip(2)).subscribe((response) => {
-      this.getCharacters(response.textSearch, response.currentPage);
+      this.getCharacters(response);
     });
   }
 
   ngOnInit(): void {
-    const page = this.page ? parseInt(this.page) : 1;
-    const name = this.name ?? '';
-
-    this.getCharacters(name, page);
-    this.updateState(name, page);
+    const queryParams = {
+      page: this.page,
+      name: this.name,
+      gender: this.gender,
+      status: this.status,
+    };
+    this.getCharacters(queryParams);
+    this.updateState(queryParams);
   }
 
-  private updateState(name: string, page: number): void {
-    this.store.dispatch(
-      addTextAndPage({ textSearch: name, currentPage: page }),
-    );
+  private updateState(state: CharState): void {
+    this.store.dispatch(updateFilters(state));
   }
 
-  private getCharacters(query: string, pagination: number) {
+  private getCharacters(queryParams: CharState) {
     this.characterService
-      .searchCharacters(query, pagination)
+      .searchCharacters(queryParams)
       .pipe(
         take(1),
         //catchError((err) => of([] as any)),
@@ -98,9 +103,6 @@ export class HomeComponent implements OnInit {
           console.log('error');
           this.noResult = true;
           this.cdr.markForCheck();
-        },
-        complete: () => {
-          console.log('subscription complete');
         },
       });
   }

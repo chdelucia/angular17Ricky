@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '@characters-data/models';
@@ -13,16 +18,18 @@ import { addPageIndex, selectPage } from '@characters-data/state';
   styleUrl: './pagination.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnInit {
   @Input({ required: true }) info!: Pagination;
 
   currentIndex$!: Observable<number>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
     this.currentIndex$ = this.store.select(selectPage);
   }
 
   emitPage(page: number): void {
-    this.store.dispatch(addPageIndex({ currentPage: page }));
+    this.store.dispatch(addPageIndex({ page: page }));
   }
 }
