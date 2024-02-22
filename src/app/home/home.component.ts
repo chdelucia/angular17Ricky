@@ -72,8 +72,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const queryParams = {
-      page: this.page,
-      name: this.name,
+      page: isNaN(this.page) ? 1 : this.page,
+      name: this.name ?? '',
       gender: this.gender,
       status: this.status,
     };

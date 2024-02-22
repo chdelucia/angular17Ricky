@@ -16,3 +16,11 @@
     <div><strong>Origin:</strong> {{ char.origin.name }}</div>
   </div>
 </div>
+
+<section>
+  @for (item of char | keyvalue; track $index) {
+    <div *ngIf="item.key !== 'episode'">
+      Key: <b>{{ item.key }}</b> and Value: <b>{{ item.value }}</b>
+    </div>
+  }
+</section>

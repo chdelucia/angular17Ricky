@@ -4,6 +4,8 @@
       [character]="character"
       class="char-card"
       [routerLink]="[detailRoute, character.id]"
+      [info]="character"
+      [state]="{ details: character }"
       data-cy="char-card"
     >
     </app-character-card>
