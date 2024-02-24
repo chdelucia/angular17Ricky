@@ -13,23 +13,21 @@ export const queryParamInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   const modifiedRequest = req.clone();
   const queryParams = modifiedRequest.params.toString();
-
+  console.log(modifiedRequest);
   const router = inject(Router);
 
   return next(req).pipe(
     tap({
       next: () => {
         if (queryParams) {
-          const paramsObj: Params = {
-            name: modifiedRequest.params.get('name'),
-            page: modifiedRequest.params.get('page'),
-            gender: modifiedRequest.params.get('gender'),
-            status: modifiedRequest.params.get('status'),
-          };
-          router.navigate([], {
-            queryParamsHandling: 'merge',
-            queryParams: paramsObj,
+          const paramsObj: Params = {};
+          modifiedRequest.params.keys().forEach((key) => {
+            paramsObj[key] = modifiedRequest.params.get(key);
           });
+          const urlTree = router.createUrlTree([], { queryParams: paramsObj });
+          const url = urlTree.toString();
+
+          router.navigateByUrl(url);
         }
       },
       error: (e) => {
