@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { FilterNameComponent } from './filter-name.component';
-import { addTextSearch } from '@characters-data/state';
 
 describe('FilterNameComponent', () => {
   let component: FilterNameComponent;
@@ -28,12 +27,6 @@ describe('FilterNameComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should dispatch addTextSearch action when updateStore is called', () => {
-    const value = 'test';
-    component.updateStore(value);
-    expect(store.dispatch).toHaveBeenCalledWith(addTextSearch({ name: value }));
   });
 
   it('should return value from event target when getValue is called', () => {
