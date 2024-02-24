@@ -35,7 +35,7 @@ describe('CharacterService', () => {
     const page = 1;
     const expectedUrl = `${environment.baseUrlAPI}?name=${query}&page=${page}`;
 
-    service.searchCharacters(query, page).subscribe();
+    service.searchCharacters({ name: query, page: page }).subscribe();
 
     const req = httpTesting.expectOne(expectedUrl);
     expect(req.request.url).toEqual(`${environment.baseUrlAPI}`);
