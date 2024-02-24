@@ -1,12 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { addGenderAndStatus, selectCharState } from '@characters-data/state';
+import { selectCharState, updateFilters } from '@characters-data/state';
 import { CharacterStatus } from '@characters-feature/enums';
 import { Store } from '@ngrx/store';
 import { FilterNameComponent } from '@shared/components';
 import { FilterSelectComponent } from '@shared/components/filter-select/filter-select.component';
-import { debounceTime, distinctUntilChanged, take } from 'rxjs';
+import {
+  Subject,
+  debounceTime,
+  distinctUntilChanged,
+  take,
+  takeUntil,
+} from 'rxjs';
 
 @Component({
   selector: 'app-filters',
@@ -21,7 +32,7 @@ import { debounceTime, distinctUntilChanged, take } from 'rxjs';
   styleUrl: './filters.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnDestroy {
   form!: FormGroup;
 
   statusOptions = [
@@ -37,6 +48,8 @@ export class FiltersComponent implements OnInit {
     { value: 'unknown', text: CharacterStatus.UNKNOWN },
   ];
 
+  private unsubscribe$: Subject<void> = new Subject<void>();
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -49,6 +62,7 @@ export class FiltersComponent implements OnInit {
       .pipe(take(1))
       .subscribe((state) => {
         this.form = new FormGroup({
+          name: new FormControl(state.name),
           selectGender: new FormControl(state.gender),
           selectStatus: new FormControl(state.status),
         });
@@ -58,13 +72,24 @@ export class FiltersComponent implements OnInit {
 
   initListenChanges(): void {
     this.form.valueChanges
-      .pipe(distinctUntilChanged(), debounceTime(2000))
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        distinctUntilChanged(),
+        debounceTime(1000),
+      )
       .subscribe((value) => {
         const obj = {
+          name: value.name ?? '',
           gender: value.selectGender ?? '',
           status: value.selectStatus ?? '',
+          page: 1,
         };
-        this.store.dispatch(addGenderAndStatus(obj));
+        this.store.dispatch(updateFilters(obj));
       });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
