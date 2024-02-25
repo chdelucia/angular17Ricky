@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const charResponse = {
   info: {
     count: 826,
@@ -150,5 +151,5 @@ export const charResponse = {
       url: 'https://rickandmortyapi.com/api/character/2',
       created: '2017-11-04T18:50:21.651Z',
     },
-  ],
+  ] as any,
 };

@@ -8,9 +8,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { charResponse } from '@characters-data/mocks';
 
 const characterServiceStub = {
   getDetails: () => of({ name: 'test' }),
+  searchCharacters: () => of(charResponse),
 };
 
 const LocationStub = {
@@ -55,6 +57,7 @@ describe('CharacterDetailComponent', () => {
 
     fixture = TestBed.createComponent(CharacterDetailComponent);
     component = fixture.componentInstance;
+    component.character = charResponse.results[0];
     fixture.detectChanges();
   });
 
@@ -63,7 +66,7 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should set character property from route snapshot data', () => {
-    expect(component.character.name).toEqual('test');
+    expect(component.character.name).toEqual('Rick Sanchez');
   });
 
   it('should navigate back when goBack() is called', () => {
