@@ -1,0 +1,14 @@
+<section class="suggested-chars">
+  <h2>Similar characters:</h2>
+  @if (suggestedChars$ | async; as suggestedChars) {
+    <div class="suggested-chars__grid">
+      @for (character of suggestedChars.results | slice: 0 : 6; track $index) {
+        <app-character-card
+          [routerLink]="[detailRoute, character.id]"
+          class="char-card"
+          [character]="character"
+        ></app-character-card>
+      }
+    </div>
+  }
+</section>

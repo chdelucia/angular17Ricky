@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Params, Router } from '@angular/router';
+import { globalRoutes } from '@shared/routes.enum';
 import { Observable, tap } from 'rxjs';
 
 export const queryParamInterceptor: HttpInterceptorFn = (
@@ -13,13 +14,12 @@ export const queryParamInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   const modifiedRequest = req.clone();
   const queryParams = modifiedRequest.params.toString();
-  console.log(modifiedRequest);
-  const router = inject(Router);
 
+  const router = inject(Router);
   return next(req).pipe(
     tap({
       next: () => {
-        if (queryParams) {
+        if (queryParams && router.url.includes(globalRoutes.HOME)) {
           const paramsObj: Params = {};
           modifiedRequest.params.keys().forEach((key) => {
             paramsObj[key] = modifiedRequest.params.get(key);

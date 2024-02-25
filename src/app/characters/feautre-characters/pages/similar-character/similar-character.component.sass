@@ -1,0 +1,22 @@
+.suggested-chars
+  margin-top: 5rem
+  &__grid
+    display: flex
+    gap: 2rem
+    flex-wrap: wrap
+    justify-content: center
+
+
+.char-card
+    flex: 1 0 300px
+    border: 1px solid #000
+    transition: .4s
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+    border-radius:10px
+    overflow: hidden
+    background: #fff
+
+    &:hover
+      transform: scale(1.07)
+      box-shadow: 0 0 40px -10px rgba(0, 228, 0, 0.7)
+      cursor: pointer

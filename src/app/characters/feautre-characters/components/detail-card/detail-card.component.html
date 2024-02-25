@@ -6,21 +6,21 @@
     loading="lazy"
   />
   <div class="detail-card__details">
-    <div><strong>Name:</strong> {{ char.name }}</div>
-    <div><strong>Species:</strong> {{ char.species }}</div>
-    <div><strong>Gender:</strong> {{ char.gender }}</div>
-    <div><strong>Status:</strong> {{ char.status }}</div>
-    <div *ngIf="char.type"><strong>Type:</strong> {{ char.type }}</div>
-    <div><strong>ID:</strong> {{ char.id }}</div>
+    @for (item of char | keyvalue; track $index) {
+      @if (
+        item.key !== "location" &&
+        item.key !== "origin" &&
+        item.key !== "episode" &&
+        item.key !== "image" &&
+        item.value
+      ) {
+        <div>
+          <strong>{{ item.key }}:</strong> {{ item.value }}
+        </div>
+      }
+    }
+
     <div><strong>Location:</strong> {{ char.location.name }}</div>
     <div><strong>Origin:</strong> {{ char.origin.name }}</div>
   </div>
 </div>
-
-<section>
-  @for (item of char | keyvalue; track $index) {
-    <div *ngIf="item.key !== 'episode'">
-      Key: <b>{{ item.key }}</b> and Value: <b>{{ item.value }}</b>
-    </div>
-  }
-</section>
