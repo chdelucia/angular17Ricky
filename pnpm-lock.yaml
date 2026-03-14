@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^17.2.4
     version: 17.2.4(@angular/compiler@17.2.4)(typescript@5.2.2)
   '@cypress/schematic':
-    specifier: 2.5.1
-    version: 2.5.1(@angular/cli@17.2.3)(@angular/core@17.2.4)
+    specifier: 3.0.0
+    version: 3.0.0(@angular/cli@17.2.3)(@angular/core@17.2.4)
   '@types/jasmine':
     specifier: ~5.1.0
     version: 5.1.0
@@ -1801,16 +1801,16 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/schematic@2.5.1(@angular/cli@17.2.3)(@angular/core@17.2.4):
-    resolution: {integrity: sha512-tO2lUnr5C0udB4xpewndlTMkEHHdgyvSNLI9+bTdYbxCby8MlxrFpewxmqPIfH21ZmOQP8XghD5uMd3l732ESA==}
+  /@cypress/schematic@3.0.0(@angular/cli@17.2.3)(@angular/core@17.2.4):
+    resolution: {integrity: sha512-LFT0sl4HOykGWwrDfvHnQxucSvT2P/VA+GOk89dbSRMkXLG8u8h9GfbqK+9keoJBGTnfJFU8MWTtwjyYwPZW6w==}
     peerDependencies:
-      '@angular/cli': '>=14'
-      '@angular/core': '>=14'
+      '@angular/cli': '>=17.2'
+      '@angular/core': '>=17.2'
     dependencies:
       '@angular/cli': 17.2.3
       '@angular/core': 17.2.4(rxjs@7.8.2)(zone.js@0.14.2)
-      jsonc-parser: 3.2.0
-      rxjs: 6.6.7
+      jsonc-parser: 3.3.1
+      rxjs: 7.8.2
     dev: true
 
   /@cypress/xvfb@1.2.4(supports-color@8.1.1):
@@ -6196,6 +6196,10 @@ packages:
     resolution: {integrity: sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==}
     dev: true
 
+  /jsonc-parser@3.3.1:
+    resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
+    dev: true
+
   /jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
@@ -7914,13 +7918,6 @@ packages:
     dependencies:
       queue-microtask: 1.2.3
 
-  /rxjs@6.6.7:
-    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
-    engines: {npm: '>=2.0.0'}
-    dependencies:
-      tslib: 1.14.1
-    dev: true
-
   /rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
@@ -8706,6 +8703,7 @@ packages:
 
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: false
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
