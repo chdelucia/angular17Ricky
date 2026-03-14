@@ -31,7 +31,7 @@
     "@angular/router": "^17.2.4",
     "@ngrx/eslint-plugin": "17.1.0",
     "@ngrx/store": "^17.1.0",
-    "rxjs": "~7.8.0",
+    "rxjs": "~7.8.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
