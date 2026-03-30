@@ -1,0 +1,28 @@
+
+> angular17-ricky@1.0.0 build /app
+> ng build
+
+❯ Building...
+✔ Building...
+Initial chunk files   | Names                    |  Raw size | Estimated transfer size
+chunk-P5WEZOYS.js     | -                        | 160.86 kB |                46.73 kB
+chunk-ESFHPP6D.js     | -                        | 111.23 kB |                27.97 kB
+polyfills-2FSRUXKO.js | polyfills                |  35.73 kB |                11.58 kB
+chunk-LUDVUSNX.js     | -                        |  14.66 kB |                 4.74 kB
+main-6VNPPNK3.js      | main                     |   5.85 kB |                 2.00 kB
+chunk-ZONG4P57.js     | -                        | 858 bytes |               858 bytes
+styles-CBDCHWOT.css   | styles                   | 812 bytes |               812 bytes
+
+                      | Initial total            | 330.00 kB |                94.69 kB
+
+Lazy chunk files      | Names                    |  Raw size | Estimated transfer size
+chunk-ONM2ILUE.js     | -                        |  32.68 kB |                 7.45 kB
+chunk-L7UTTASJ.js     | index                    |   7.76 kB |                 2.25 kB
+chunk-CXQ67SHE.js     | filters-component        |   3.42 kB |                 1.27 kB
+chunk-4C7AIHV2.js     | page-not-found-component |   1.60 kB |               634 bytes
+chunk-PBSQ23UL.js     | index                    | 221 bytes |               221 bytes
+chunk-SBHQNZYU.js     | -                        | 103 bytes |               103 bytes
+
+Application bundle generation complete. [11.382 seconds] - 2026-03-30T10:44:21.805Z
+
+Output location: /app/dist/angular17-ricky
