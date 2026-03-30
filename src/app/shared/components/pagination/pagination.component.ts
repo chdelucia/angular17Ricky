@@ -3,6 +3,7 @@ import {
   Component,
   Input,
   OnInit,
+  inject,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
@@ -19,11 +20,11 @@ import { addPageIndex, selectPage } from '@characters-data/state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent implements OnInit {
+  private store = inject(Store);
+
   @Input({ required: true }) info!: Pagination;
 
   currentIndex$!: Observable<number>;
-
-  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.currentIndex$ = this.store.select(selectPage);

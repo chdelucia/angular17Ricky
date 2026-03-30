@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit,
+  inject,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { selectCharState, updateFilters } from '@characters-data/state';
@@ -22,17 +22,14 @@ import {
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [
-    CommonModule,
-    FilterSelectComponent,
-    ReactiveFormsModule,
-    FilterNameComponent,
-  ],
+  imports: [FilterSelectComponent, ReactiveFormsModule, FilterNameComponent],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FiltersComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+
   form!: FormGroup;
 
   statusOptions = [
@@ -49,8 +46,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
   ];
 
   private unsubscribe$: Subject<void> = new Subject<void>();
-
-  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.initForm();

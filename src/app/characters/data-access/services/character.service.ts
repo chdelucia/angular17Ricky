@@ -3,7 +3,7 @@ import {
   HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '@env/environment';
 import { throwError, Observable, catchError } from 'rxjs';
 import { Character, CharactersDto } from '../models';
@@ -14,10 +14,8 @@ import { CharState } from '@characters-data/state';
   providedIn: 'root',
 })
 export class CharacterService {
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-  ) {}
+  private http = inject(HttpClient);
+  private router = inject(Router);
 
   searchCharacters(item: Partial<CharState>): Observable<CharactersDto> {
     let params = new HttpParams();
