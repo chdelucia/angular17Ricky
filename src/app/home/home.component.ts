@@ -5,8 +5,9 @@ import {
   Input,
   OnInit,
   numberAttribute,
+  inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Observable, take, skip } from 'rxjs';
 import { CharacterListComponent } from '@characters-feature/pages';
 import { CharactersDto } from '@characters-data/models';
@@ -30,9 +31,7 @@ import { FiltersComponent } from '@characters-feature/components/filters/filters
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   imports: [
-    CommonModule,
     FilterNameComponent,
     CharacterListComponent,
     PaginationComponent,
@@ -47,6 +46,10 @@ import { FiltersComponent } from '@characters-feature/components/filters/filters
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
+  private characterService = inject(CharacterService);
+  private store = inject(Store);
+  private cdr = inject(ChangeDetectorRef);
+
   @Input() name = '';
   @Input() gender = '';
   @Input() status = '';
@@ -58,11 +61,7 @@ export class HomeComponent implements OnInit {
 
   state$!: Observable<CharState>;
 
-  constructor(
-    private characterService: CharacterService,
-    private store: Store,
-    private cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.state$ = this.store.select(selectCharState);
 
     this.state$.pipe(takeUntilDestroyed(), skip(2)).subscribe((response) => {

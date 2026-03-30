@@ -4,11 +4,15 @@ import { CharacterDetailComponent } from './character-detail.component';
 import { CharacterService } from '@characters-data/services';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { charResponse } from '@characters-data/mocks';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 const characterServiceStub = {
   getDetails: () => of({ name: 'test' }),
@@ -42,17 +46,15 @@ describe('CharacterDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        CharacterDetailComponent,
-        HttpClientTestingModule,
-        RouterTestingModule,
-      ],
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [CharacterDetailComponent, RouterTestingModule],
       providers: [
         { provide: CharacterService, useValue: characterServiceStub },
         { provide: Location, useValue: LocationStub },
         { provide: ActivatedRoute, useValue: activatedRouteMock },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
-      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CharacterDetailComponent);

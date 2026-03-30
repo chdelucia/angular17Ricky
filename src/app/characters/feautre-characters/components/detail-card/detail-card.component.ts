@@ -4,7 +4,6 @@ import { Character } from '@characters-data/models';
 
 @Component({
   selector: 'app-character-detail-card',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './detail-card.component.html',
   styleUrl: './detail-card.component.sass',
