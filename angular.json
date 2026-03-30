@@ -28,6 +28,8 @@
             "outputPath": "dist/angular17-ricky",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "ssr": false,
+            "prerender": false,
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "sass",
