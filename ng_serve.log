@@ -1,0 +1,26 @@
+
+> angular17-ricky@1.0.0 start /app
+> ng serve
+
+- Building...
+
+Initial chunk files | Names                    |  Raw size
+polyfills.js        | polyfills                |  88.12 kB |
+chunk-ODCDDUJ3.js   | -                        |  14.46 kB |
+main.js             | main                     |  13.82 kB |
+chunk-VX7R7NIR.js   | -                        |   1.85 kB |
+styles.css          | styles                   |   1.29 kB |
+chunk-SHAOKUVO.js   | -                        | 938 bytes |
+
+                    | Initial total            | 120.45 kB
+
+Lazy chunk files    | Names                    |  Raw size
+chunk-XSG4V7K4.js   | index                    |  18.84 kB |
+chunk-YM7RUE72.js   | filters-component        |   8.04 kB |
+chunk-D6CBPKMG.js   | page-not-found-component |   2.94 kB |
+chunk-V6J6DQ7Y.js   | -                        | 358 bytes |
+
+Application bundle generation complete. [8.030 seconds]
+
+Watch mode enabled. Watching for file changes...
+  ➜  Local:   http://localhost:4200/
