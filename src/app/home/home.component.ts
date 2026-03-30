@@ -12,12 +12,7 @@ import { Observable, take, skip } from 'rxjs';
 import { CharacterListComponent } from '@characters-feature/pages';
 import { CharactersDto } from '@characters-data/models';
 import { CharacterService } from '@characters-data/services/character.service';
-import {
-  LoaderComponent,
-  PaginationComponent,
-  FilterNameComponent,
-  NoResultsComponent,
-} from '@shared/components';
+import { PaginationComponent, NoResultsComponent } from '@shared/components';
 import { Store } from '@ngrx/store';
 import {
   CharState,
@@ -33,10 +28,8 @@ import { FiltersComponent } from '@characters-feature/components/filters/filters
   selector: 'app-home',
   standalone: true,
   imports: [
-    FilterNameComponent,
     CharacterListComponent,
     PaginationComponent,
-    LoaderComponent,
     NoResultsComponent,
     CardSkeletonComponent,
     FilterNameSkeletonComponent,
