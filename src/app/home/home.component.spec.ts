@@ -1,8 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { HomeComponent } from './home.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { selectCharState } from '@characters-data/state';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,7 +21,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent, HttpClientTestingModule],
+      imports: [HomeComponent],
       providers: [
         provideMockStore({
           initialState,
@@ -28,6 +32,8 @@ describe('HomeComponent', () => {
             },
           ],
         }),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     }).compileComponents();
 

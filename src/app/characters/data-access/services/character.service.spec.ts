@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  HttpClientTestingModule,
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
@@ -8,6 +7,10 @@ import {
 import { CharacterService } from './character.service';
 import { environment } from '@env/environment';
 import { Character, CharactersDto } from '../models';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 describe('CharacterService', () => {
   let service: CharacterService;
@@ -15,8 +18,11 @@ describe('CharacterService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [provideHttpClientTesting()],
+      imports: [],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     });
     service = TestBed.inject(CharacterService);
     httpTesting = TestBed.inject(HttpTestingController);
