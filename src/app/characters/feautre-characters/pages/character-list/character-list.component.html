@@ -1,5 +1,5 @@
 <section class="chars-container">
-  @for (character of characters; track character.id) {
+  @for (character of characters(); track character.id) {
     <app-character-card
       [character]="character"
       class="char-card"

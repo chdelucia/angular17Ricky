@@ -13,6 +13,7 @@ describe('CharacterListComponent', () => {
 
     fixture = TestBed.createComponent(CharacterListComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('characters', []);
     fixture.detectChanges();
   });
 

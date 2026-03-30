@@ -1,14 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FiltersComponent } from './filters.component';
-import { provideMockStore } from '@ngrx/store/testing';
-import { selectCharState } from '@characters-data/state';
-
-const initialState = {
-  response: undefined,
-  page: 1,
-  name: '',
-};
+import { CharacterStore } from '@characters-data/state';
 
 describe('FiltersComponent', () => {
   let component: FiltersComponent;
@@ -17,17 +10,7 @@ describe('FiltersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FiltersComponent],
-      providers: [
-        provideMockStore({
-          initialState,
-          selectors: [
-            {
-              selector: selectCharState,
-              value: [{}],
-            },
-          ],
-        }),
-      ],
+      providers: [CharacterStore],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FiltersComponent);

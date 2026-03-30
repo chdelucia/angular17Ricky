@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Character } from '@characters-data/models';
 import { CardComponent } from '@characters-feature/components';
@@ -13,7 +13,7 @@ import { globalRoutes } from '@shared/routes.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterListComponent {
-  @Input({ required: true }) characters!: Character[];
+  characters = input.required<Character[]>();
 
   detailRoute = `/${globalRoutes.CHAR_LIST}`;
 }

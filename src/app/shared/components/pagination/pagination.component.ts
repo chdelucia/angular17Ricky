@@ -1,15 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
+  input,
   inject,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { CharacterStore } from '@characters-data/state';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '@characters-data/models';
-import { Observable } from 'rxjs';
-import { addPageIndex, selectPage } from '@characters-data/state';
 
 @Component({
   selector: 'app-shared-pagination',
@@ -18,18 +15,12 @@ import { addPageIndex, selectPage } from '@characters-data/state';
   styleUrl: './pagination.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaginationComponent implements OnInit {
-  private store = inject(Store);
+export class PaginationComponent {
+  readonly store = inject(CharacterStore);
 
-  @Input({ required: true }) info!: Pagination;
-
-  currentIndex$!: Observable<number>;
-
-  ngOnInit(): void {
-    this.currentIndex$ = this.store.select(selectPage);
-  }
+  info = input.required<Pagination | null>();
 
   emitPage(page: number): void {
-    this.store.dispatch(addPageIndex({ page: page }));
+    this.store.updateFilters({ page });
   }
 }
