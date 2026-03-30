@@ -27,7 +27,7 @@ describe('SimilarCharacterComponent', () => {
 
     fixture = TestBed.createComponent(SimilarCharacterComponent);
     component = fixture.componentInstance;
-    component.char = charResponse.results[0];
+    fixture.componentRef.setInput('char', charResponse.results[0]);
     fixture.detectChanges();
   });
 

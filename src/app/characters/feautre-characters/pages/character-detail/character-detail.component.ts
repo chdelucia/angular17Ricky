@@ -10,17 +10,11 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { globalRoutes } from '@shared/routes.enum';
 import { Character } from '@characters-data/models';
 import { DetailCardComponent } from '@characters-feature/components';
-import { LoaderComponent } from '@shared/components';
 import { SimilarCharacterComponent } from '../similar-character/similar-character.component';
 
 @Component({
   selector: 'app-character-detail',
-  imports: [
-    RouterModule,
-    DetailCardComponent,
-    LoaderComponent,
-    SimilarCharacterComponent,
-  ],
+  imports: [RouterModule, DetailCardComponent, SimilarCharacterComponent],
   templateUrl: './character-detail.component.html',
   styleUrl: './character-detail.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,

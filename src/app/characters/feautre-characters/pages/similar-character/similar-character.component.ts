@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, input, OnInit, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Character, CharactersDto } from '@characters-data/models';
 import { CharacterService } from '@characters-data/services';
 import { CardComponent } from '@characters-feature/components';
 import { globalRoutes } from '@shared/routes.enum';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-similar-character',
@@ -16,17 +15,19 @@ import { Observable } from 'rxjs';
 export class SimilarCharacterComponent implements OnInit {
   private charService = inject(CharacterService);
 
-  @Input({ required: true }) char!: Character;
+  char = input.required<Character>();
 
-  suggestedChars$!: Observable<CharactersDto>;
+  suggestedChars = signal<CharactersDto | null>(null);
 
   detailRoute = `/${globalRoutes.CHAR_LIST}`;
 
   ngOnInit(): void {
-    const { gender, status } = this.char;
-    this.suggestedChars$ = this.charService.searchCharacters({
-      gender,
-      status,
-    });
+    const { gender, status } = this.char();
+    this.charService
+      .searchCharacters({
+        gender,
+        status,
+      })
+      .subscribe((response) => this.suggestedChars.set(response));
   }
 }

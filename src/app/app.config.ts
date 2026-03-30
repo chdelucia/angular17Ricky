@@ -8,8 +8,6 @@ import {
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideStore } from '@ngrx/store';
-import { characterReducer } from '@characters-data/state';
 import { queryParamInterceptor } from '@characters-data/interceptor';
 
 export const appConfig: ApplicationConfig = {
@@ -21,6 +19,5 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
     ),
     provideHttpClient(withInterceptors([queryParamInterceptor])),
-    provideStore({ chars: characterReducer }),
   ],
 };

@@ -1,23 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnDestroy,
   OnInit,
   inject,
+  DestroyRef,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { selectCharState, updateFilters } from '@characters-data/state';
+import { CharacterStore } from '@characters-data/state';
 import { CharacterStatus } from '@characters-feature/enums';
-import { Store } from '@ngrx/store';
 import { FilterNameComponent } from '@shared/components';
 import { FilterSelectComponent } from '@shared/components/filter-select/filter-select.component';
-import {
-  Subject,
-  debounceTime,
-  distinctUntilChanged,
-  take,
-  takeUntil,
-} from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-filters',
@@ -26,8 +20,9 @@ import {
   styleUrl: './filters.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FiltersComponent implements OnInit, OnDestroy {
-  private store = inject(Store);
+export class FiltersComponent implements OnInit {
+  private store = inject(CharacterStore);
+  private destroyRef = inject(DestroyRef);
 
   form!: FormGroup;
 
@@ -44,30 +39,23 @@ export class FiltersComponent implements OnInit, OnDestroy {
     { value: 'unknown', text: CharacterStatus.UNKNOWN },
   ];
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm(): void {
-    this.store
-      .select(selectCharState)
-      .pipe(take(1))
-      .subscribe((state) => {
-        this.form = new FormGroup({
-          name: new FormControl(state.name),
-          selectGender: new FormControl(state.gender),
-          selectStatus: new FormControl(state.status),
-        });
-        this.initListenChanges();
-      });
+    this.form = new FormGroup({
+      name: new FormControl(this.store.name()),
+      selectGender: new FormControl(this.store.gender()),
+      selectStatus: new FormControl(this.store.status()),
+    });
+    this.initListenChanges();
   }
 
   initListenChanges(): void {
     this.form.valueChanges
       .pipe(
-        takeUntil(this.unsubscribe$),
+        takeUntilDestroyed(this.destroyRef),
         distinctUntilChanged(),
         debounceTime(1000),
       )
@@ -78,12 +66,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
           status: value.selectStatus ?? '',
           page: 1,
         };
-        this.store.dispatch(updateFilters(obj));
+        this.store.updateFilters(obj);
       });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 }

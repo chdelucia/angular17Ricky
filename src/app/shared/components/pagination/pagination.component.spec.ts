@@ -1,29 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { PaginationComponent } from './pagination.component';
-import { addPageIndex } from '@characters-data/state';
-import { of } from 'rxjs';
+import { CharacterStore } from '@characters-data/state';
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
-  let store: MockStore;
-  const initialState = {
-    response: undefined,
-    page: 1,
-    name: '',
-  };
+  let store: InstanceType<typeof CharacterStore>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PaginationComponent],
-      providers: [provideMockStore({ initialState })],
+      providers: [CharacterStore],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaginationComponent);
-    store = TestBed.inject(MockStore);
+    store = TestBed.inject(CharacterStore);
     component = fixture.componentInstance;
-    spyOn(store, 'dispatch').and.callThrough();
+    fixture.componentRef.setInput('info', {
+      count: 100,
+      pages: 10,
+      next: 'next',
+      prev: null,
+    });
     fixture.detectChanges();
   });
 
@@ -31,14 +29,10 @@ describe('PaginationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch addPageIndex action when emitPage is called', () => {
+  it('should update page filter when emitPage is called', () => {
     const pageNumber = 2;
+    const spy = spyOn(store, 'updateFilters');
     component.emitPage(pageNumber);
-    expect(store.dispatch).toHaveBeenCalledWith(addPageIndex({ page: 2 }));
-  });
-
-  it('should initialize currentIndex$ with the correct value from store', () => {
-    spyOn(store, 'select').and.returnValue(of(2));
-    expect(component.currentIndex$).toBeDefined();
+    expect(spy).toHaveBeenCalledWith({ page: 2 });
   });
 });

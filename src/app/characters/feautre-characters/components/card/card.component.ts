@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Character } from '@characters-data/models';
 import { CharacterStatus } from '@characters-feature/enums';
 
@@ -10,7 +10,7 @@ import { CharacterStatus } from '@characters-feature/enums';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-  @Input({ required: true }) character!: Character;
+  character = input.required<Character>();
 
   deadStatus = CharacterStatus.DEAD;
 }

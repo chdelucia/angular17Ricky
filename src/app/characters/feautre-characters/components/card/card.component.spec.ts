@@ -13,8 +13,8 @@ describe('CardComponent', () => {
 
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
-    component.character = {
-      id: '1',
+    fixture.componentRef.setInput('character', {
+      id: 1,
       image: '',
       name: 'test',
       status: 'Dead',
@@ -26,7 +26,7 @@ describe('CardComponent', () => {
       url: ['urlTest'],
       episode: ['2'],
       created: 'today',
-    };
+    });
     fixture.detectChanges();
   });
 
