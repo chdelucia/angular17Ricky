@@ -59,7 +59,8 @@ describe('CharacterDetailComponent', () => {
 
     fixture = TestBed.createComponent(CharacterDetailComponent);
     component = fixture.componentInstance;
-    component.character = charResponse.results[0];
+    fixture.componentRef.setInput('id', '1');
+    fixture.componentRef.setInput('detail', charResponse.results[0]);
     fixture.detectChanges();
   });
 
@@ -68,7 +69,7 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should set character property from route snapshot data', () => {
-    expect(component.character.name).toEqual('Rick Sanchez');
+    expect(component.detail().name).toEqual('Rick Sanchez');
   });
 
   it('should navigate back when goBack() is called', () => {

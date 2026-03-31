@@ -1,6 +1,6 @@
 @if (info(); as paginationInfo) {
   <ul class="pagination">
-    <li class="page-item xs-hide" [ngClass]="{ disabled: store.page() === 1 }">
+    <li class="page-item xs-hide" [ngClass]="{ disabled: currentPage() === 1 }">
       <a
         class="page-link"
         (click)="emitPage(1)"
@@ -13,8 +13,8 @@
     <li class="page-item" [class.disabled]="!paginationInfo.prev">
       <span
         class="page-link"
-        (click)="emitPage(store.page() - 1)"
-        (keydown.enter)="emitPage(store.page() - 1)"
+        (click)="emitPage(currentPage() - 1)"
+        (keydown.enter)="emitPage(currentPage() - 1)"
         data-cy="p-prev"
         tabindex="1"
         >Prev</span
@@ -22,14 +22,14 @@
     </li>
     <li class="page-item active">
       <a class="page-link" data-cy="p-number" tabindex="2"
-        >{{ store.page() }} of {{ paginationInfo.pages }}</a
+        >{{ currentPage() }} of {{ paginationInfo.pages }}</a
       >
     </li>
     <li class="page-item" [class.disabled]="!paginationInfo.next">
       <a
         class="page-link"
-        (click)="emitPage(store.page() + 1)"
-        (keydown.enter)="emitPage(store.page() + 1)"
+        (click)="emitPage(currentPage() + 1)"
+        (keydown.enter)="emitPage(currentPage() + 1)"
         data-cy="p-next"
         tabindex="3"
         >Next</a
@@ -37,7 +37,7 @@
     </li>
     <li
       class="page-item xs-hide"
-      [ngClass]="{ disabled: store.page() === paginationInfo.pages }"
+      [ngClass]="{ disabled: currentPage() === paginationInfo.pages }"
     >
       <a
         class="page-link"

@@ -1,12 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
   numberAttribute,
   inject,
   effect,
   untracked,
+  input,
 } from '@angular/core';
 
 import { CharacterListComponent } from '@characters-feature/pages';
@@ -30,13 +29,13 @@ import { FiltersComponent } from '@characters-feature/components/filters/filters
   styleUrl: './home.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   readonly store = inject(CharacterStore);
 
-  @Input() name = '';
-  @Input() gender = '';
-  @Input() status = '';
-  @Input({ transform: numberAttribute }) page = 1;
+  name = input('');
+  gender = input('');
+  status = input('');
+  page = input(1, { transform: numberAttribute });
 
   constructor() {
     effect(() => {
@@ -47,14 +46,14 @@ export class HomeComponent implements OnInit {
       this.store.status();
       untracked(() => this.store.loadCharacters());
     });
-  }
 
-  ngOnInit(): void {
-    this.store.updateFilters({
-      page: isNaN(this.page) ? 1 : this.page,
-      name: this.name ?? '',
-      gender: this.gender,
-      status: this.status,
+    effect(() => {
+      this.store.updateFilters({
+        page: isNaN(this.page()) ? 1 : this.page(),
+        name: this.name() ?? '',
+        gender: this.gender(),
+        status: this.status(),
+      });
     });
   }
 }

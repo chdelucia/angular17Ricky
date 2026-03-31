@@ -2,9 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  inject,
+  output,
 } from '@angular/core';
-import { CharacterStore } from '@characters-data/state';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '@characters-data/models';
 
@@ -16,11 +15,11 @@ import { Pagination } from '@characters-data/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {
-  readonly store = inject(CharacterStore);
-
   info = input.required<Pagination | null>();
+  currentPage = input.required<number>();
+  pageChange = output<number>();
 
   emitPage(page: number): void {
-    this.store.updateFilters({ page });
+    this.pageChange.emit(page);
   }
 }

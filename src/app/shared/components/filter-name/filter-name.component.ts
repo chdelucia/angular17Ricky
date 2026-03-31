@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FilterNameComponent),
+      useExisting: FilterNameComponent,
       multi: true,
     },
   ],
@@ -23,8 +23,6 @@ export class FilterNameComponent implements ControlValueAccessor {
 
   writeValue(value: string): void {
     this.value = value;
-    this.onChange(value);
-    this.onTouched();
   }
 
   getValue(event: Event): string {
@@ -32,10 +30,12 @@ export class FilterNameComponent implements ControlValueAccessor {
   }
 
   search(name: string) {
+    this.value = name;
     this.onChange(name);
+    this.onTouched();
   }
 
-  registerOnChange(fn: () => void): void {
+  registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
 
