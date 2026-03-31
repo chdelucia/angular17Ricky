@@ -1,6 +1,10 @@
 @if (store.charactersResponse()) {
   <app-filters></app-filters>
-  <app-shared-pagination [info]="store.info()"></app-shared-pagination>
+  <app-shared-pagination
+    [info]="store.info()"
+    [currentPage]="store.page()"
+    (pageChange)="store.updateFilters({ page: $event })"
+  ></app-shared-pagination>
 
   @if (store.error()) {
     <app-shared-no-results></app-shared-no-results>

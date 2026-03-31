@@ -1,6 +1,6 @@
-@if (character) {
+@if (detail()) {
   <section class="character-container">
-    <app-character-detail-card [char]="character"></app-character-detail-card>
+    <app-character-detail-card [char]="detail()"></app-character-detail-card>
 
     <a
       class="button"
@@ -16,4 +16,4 @@
   </section>
 }
 
-<app-similar-character [char]="character"></app-similar-character>
+<app-similar-character [char]="detail()"></app-similar-character>

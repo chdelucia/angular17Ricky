@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  forwardRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -12,7 +7,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FilterSelectComponent),
+      useExisting: FilterSelectComponent,
       multi: true,
     },
   ],
@@ -21,8 +16,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterSelectComponent implements ControlValueAccessor {
-  @Input({ required: true }) options!: { value: string; text: string }[];
-  @Input({ required: true }) label!: string;
+  options = input.required<{ value: string; text: string }[]>();
+  label = input.required<string>();
 
   value: string = '';
 
@@ -31,16 +26,16 @@ export class FilterSelectComponent implements ControlValueAccessor {
 
   writeValue(value: string): void {
     this.value = value;
-    this.onChange(value);
+  }
+
+  onSelect(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.value = target.value;
+    this.onChange(this.value);
     this.onTouched();
   }
 
-  onSelect(value: Event): void {
-    const target = value.target as HTMLSelectElement;
-    this.onChange(target.value);
-  }
-
-  registerOnChange(fn: () => void): void {
+  registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
 
