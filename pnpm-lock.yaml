@@ -76,8 +76,8 @@ importers:
         specifier: ^21.2.6
         version: 21.2.6(@angular/compiler@21.2.6)(typescript@5.9.3)
       '@cypress/schematic':
-        specifier: 3.0.0
-        version: 3.0.0(@angular/cli@21.2.5(@types/node@25.5.0)(chokidar@5.0.0))(@angular/core@21.2.6(@angular/compiler@21.2.6)(rxjs@7.8.2)(zone.js@0.16.1))
+        specifier: 4.3.0
+        version: 4.3.0(@angular/cli@21.2.5(@types/node@25.5.0)(chokidar@5.0.0))(@angular/core@21.2.6(@angular/compiler@21.2.6)(rxjs@7.8.2)(zone.js@0.16.1))
       '@ngrx/eslint-plugin':
         specifier: 21.1.0
         version: 21.1.0(@typescript-eslint/utils@8.57.2(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1)(typescript-eslint@8.57.2(eslint@8.57.1)(typescript@5.9.3))(typescript@5.9.3)
@@ -969,11 +969,11 @@ packages:
     resolution: {integrity: sha512-hauBrOdvu08vOsagkZ/Aju5XuiZx6ldsLfByg1htFeldhex+PeMrYauANzFsMJeAA0+dyPLbDoX2OYuvVoLDkQ==}
     engines: {node: '>= 6'}
 
-  '@cypress/schematic@3.0.0':
-    resolution: {integrity: sha512-LFT0sl4HOykGWwrDfvHnQxucSvT2P/VA+GOk89dbSRMkXLG8u8h9GfbqK+9keoJBGTnfJFU8MWTtwjyYwPZW6w==}
+  '@cypress/schematic@4.3.0':
+    resolution: {integrity: sha512-GEPMQM2xC5HcE191g87QMgrfsDacB0KDmeZzQ4dwKNLL4/22fmBeRs9YX4p6kX3T6VGJGvvJU4gXkAxXCkUuZQ==}
     peerDependencies:
-      '@angular/cli': '>=17.2'
-      '@angular/core': '>=17.2'
+      '@angular/cli': '>=18.0.0'
+      '@angular/core': '>=18.0.0'
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
@@ -6789,7 +6789,7 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@3.0.0(@angular/cli@21.2.5(@types/node@25.5.0)(chokidar@5.0.0))(@angular/core@21.2.6(@angular/compiler@21.2.6)(rxjs@7.8.2)(zone.js@0.16.1))':
+  '@cypress/schematic@4.3.0(@angular/cli@21.2.5(@types/node@25.5.0)(chokidar@5.0.0))(@angular/core@21.2.6(@angular/compiler@21.2.6)(rxjs@7.8.2)(zone.js@0.16.1))':
     dependencies:
       '@angular/cli': 21.2.5(@types/node@25.5.0)(chokidar@5.0.0)
       '@angular/core': 21.2.6(@angular/compiler@21.2.6)(rxjs@7.8.2)(zone.js@0.16.1)
